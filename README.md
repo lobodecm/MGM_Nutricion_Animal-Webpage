@@ -35,14 +35,26 @@ El objetivo es construir una plataforma moderna, escalable y funcional que permi
 
 ### Requisitos previos
 
-- Node.js v16 o superior  
-- MongoDB o SQL Server instalado y funcionando  
-- Git instalado
+- **Node.js:**  
+  Descarga e instala Node.js desde [https://nodejs.org/](https://nodejs.org/). Se recomienda la versión LTS (actualmente v16 o superior).
 
-### Pasos para iniciar
+- **Base de datos:**  
+  - Para MongoDB:  
+    - Instala MongoDB Community Edition siguiendo la guía oficial: [https://docs.mongodb.com/manual/installation/](https://docs.mongodb.com/manual/installation/)  
+    - O usa MongoDB Atlas para una base de datos en la nube: [https://www.mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)  
 
-1. Clona el repositorio:
+- **Git:**  
+  - Descarga e instala Git desde [https://git-scm.com/downloads](https://git-scm.com/downloads)  
+  - Verifica la instalación con:
+
+    ```bash
+    git --version
+    ```
+
+---
+
+### Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu_usuario/MGM_Nutricion_Animal-Webpage.git
+git clone https://github.com/lobodecm/MGM_Nutricion_Animal-Webpage.git
 cd MGM_Nutricion_Animal-Webpage
