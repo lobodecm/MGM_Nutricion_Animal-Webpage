@@ -20,21 +20,6 @@ export default function contacto() {
         <p className="text-sm text-gray-500">
           © 2023 Tu Sitio Web. Todos los derechos reservados.
         </p>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Aprende Next.js
-          <Image
-            src="/next.svg"
-            alt="Next.js logo"
-            width={20}
-            height={20}
-            className="dark:invert"
-          />
-        </a>
       </footer>
     </div>
   );
