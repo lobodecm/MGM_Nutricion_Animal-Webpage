@@ -13,8 +13,8 @@ El objetivo es construir una plataforma moderna, escalable y funcional que permi
 
 ## Tecnologías usadas
 
-- **Frontend:** Next.js, React, Tailwind CSS (o el CSS que prefieras)  
-- **Backend:** Node.js, Express  
+- **Frontend:** Next.js, React, Tailwind CSS  
+- **Backend:** Node.js, express
 - **Base de datos:** MongoDB con Mongoose o SQL Server  
 - **Autenticación:** JWT para sesiones seguras  
 - **API REST:** Para comunicación entre frontend y backend  
