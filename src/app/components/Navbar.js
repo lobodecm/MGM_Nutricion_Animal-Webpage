@@ -23,12 +23,12 @@ export default function Navbar() {
         <img
           src="/images/logo.png" // Reemplaza con el path de tu imagen
           alt="Logo"
-          className="h-10" // Ajusta el tamaño de la imagen según sea necesario
+          className="h-15" // Ajusta el tamaño de la imagen según sea necesario
         />
 
         {/* Menú Hamburguesa para pantallas pequeñas */}
-        <button 
-          className="lg:hidden block text-black focus:outline-none" 
+        <button
+          className="lg:hidden block text-black focus:outline-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <svg
@@ -54,44 +54,44 @@ export default function Navbar() {
               <Link
                 href={href}
                 className={`group border-b-2 border-blue-400 w-[150px] h-[60px] rounded-[12px] flex items-center justify-center transition-all text-base
-                  ${pathname === href
+                    ${pathname === href
                     ? 'text-blue-400 bg-blue-50'
                     : 'text-black bg-white hover:bg-blue-50 hover:text-blue-400 hover:border-blue-400'}
                 `}
                 style={{ position: 'relative' }}
               >
-                <div className="flex flex-col items-center justify-center w-full h-full relative">
-                  <img
-                    src={img}
-                    alt={label}
-                    className={`
-                      w-8 h-8 transition-opacity duration-300 mb-1
-                      ${(pathname === href) ? 'opacity-100' : 'opacity-0'}
-                      group-hover:opacity-100
-                    `}
-                  />
-                  <span
-                    className={`
-                      text-sm w-full transition-all duration-300 text-center
-                      ${(pathname === href) ? 'static mt-1' : 'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'}
-                      group-hover:static group-hover:mt-1
-                    `}
-                    style={{ minHeight: '1.5rem' }}
-                  >
-                    {label}
-                  </span>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+              <div className={`
+                flex flex-col items-center justify-center w-full h-full relative
+                ${(pathname === href) ? '' : 'group-hover:justify-center'}
+              `}>
+              <img
+                src={img}
+                alt={label}
+                className={`
+                  w-8 h-8 transition-opacity mb-1
+                  ${(pathname === href) ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}
+                `}
+              />
+              <span
+                className={`
+                text-sm w-full transition-all duration-300 text-center
+                ${(pathname === href) ? 'mt-1' : ''}
+                ${(pathname === href) ? '' : 'group-hover:mt-1'}
+                `}
+                style={{ minHeight: '1.5rem' }}
+              >
+              {label}
+            </span>
+          </div>
+        </Link>
+      </li>))}
+    </ul>
+ </div>
 
       {/* Menú lateral para dispositivos móviles */}
       <div
-        className={`lg:hidden fixed inset-0 bg-black bg-opacity-50 z-50 ${
-          isMenuOpen ? 'block' : 'hidden'
-        }`}
+        className={`lg:hidden fixed inset-0 bg-black bg-opacity-50 z-50 ${isMenuOpen ? 'block' : 'hidden'
+          }`}
         onClick={() => setIsMenuOpen(false)}
       >
         <div className="flex justify-end p-6">
@@ -104,11 +104,10 @@ export default function Navbar() {
             <Link
               key={href}
               href={href}
-              className={`${
-                pathname === href
-                  ? 'underline text-blue-400'
-                  : 'text-black hover:underline'
-              } py-3 text-lg`}
+              className={`${pathname === href
+                ? 'underline text-blue-400'
+                : 'text-black hover:underline'
+                } py-3 text-lg`}
               onClick={() => setIsMenuOpen(false)} // Cerrar menú al hacer clic en el enlace
             >
               {label}
