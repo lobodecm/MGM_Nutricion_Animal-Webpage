@@ -17,3 +17,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes spin-twice {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(720deg);}
+}
+.spin-twice {
+  animation: spin-twice 0.8s cubic-bezier(0.4,0,0.2,1);
+}
