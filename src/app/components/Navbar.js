@@ -1,35 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Para manejar la apertura y cierre del menú en móvil
-  const [showNavbar, setShowNavbar] = useState(true);
-  const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY < 10) {
-        setShowNavbar(true);
-        lastScrollY.current = window.scrollY;
-        return;
-      }
-      if (window.scrollY > lastScrollY.current) {
-        // Scroll hacia abajo
-        setShowNavbar(false);
-      } else {
-        // Scroll hacia arriba
-        setShowNavbar(true);
-      }
-      lastScrollY.current = window.scrollY;
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
     { href: '/', label: 'Inicio', img: '/images/home.png' },
@@ -40,17 +17,13 @@ export default function Navbar() {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 bg-[#F4F6F8] text-black px-6 py-4 shadow-md transition-transform duration-300
-    ${showNavbar ? 'translate-y-0' : '-translate-y-full'}
-  `}
-    >
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[#F4F6F8] text-black px-6 py-4 shadow-md">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Imagen (Logotipo o ícono) */}
         <img
-          src="/images/logo.png" // Reemplaza con el path de tu imagen
+          src="/images/logo.png"
           alt="Logo"
-          className="h-15" // Ajusta el tamaño de la imagen según sea necesario
+          className="h-15"
         />
 
         {/* Menú Hamburguesa para pantallas pequeñas */}
@@ -81,42 +54,39 @@ export default function Navbar() {
               <Link
                 href={href}
                 className={`group border-b-2 border-blue-400 w-[150px] h-[60px] rounded-[12px] flex items-center justify-center transition-all text-base
-                    ${pathname === href
+                  ${pathname === href
                     ? 'text-blue-400 bg-blue-50 '
                     : 'text-black bg-white hover:bg-blue-50 hover:text-blue-400 hover:border-blue-400'}
                 `}
                 style={{ position: 'relative' }}
               >
-              <div
-                className={`
-                  flex flex-col items-center justify-center w-full h-full relative
-                  ${(pathname === href) ? '' : 'group-hover:justify-center'}
-                `}
-              >
-              <img
-                src={img}
-                alt={label}
-                className={`w-8 h-8 mb-1 transition-all duration-300
-    ${pathname === href ? 'spin-twice' : ''}
-    group-hover:spin-twice
-  `}
-              />
-              <span
-                className="text-sm w-full transition-all duration-300 text-center"
-                style={{ minHeight: '1.5rem' }}
-              >
-                {label}
-              </span>
-            </div>
-        </Link>
-      </li>))}
-    </ul>
- </div>
+                <div
+                  className={`
+                    flex flex-col items-center justify-center w-full h-full relative
+                    ${(pathname === href) ? '' : 'group-hover:justify-center'}
+                  `}
+                >
+                  <img
+                    src={img}
+                    alt={label}
+                    className="w-8 h-8 mb-1 transition-all duration-300"
+                  />
+                  <span
+                    className="text-sm w-full transition-all duration-300 text-center"
+                    style={{ minHeight: '1.5rem' }}
+                  >
+                    {label}
+                  </span>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       {/* Menú lateral para dispositivos móviles */}
       <div
-        className={`lg:hidden fixed inset-0 bg-black bg-opacity-50 z-50 ${isMenuOpen ? 'block' : 'hidden'
-          }`}
+        className={`lg:hidden fixed inset-0 bg-black bg-opacity-50 z-50 ${isMenuOpen ? 'block' : 'hidden'}`}
         onClick={() => setIsMenuOpen(false)}
       >
         <div className="flex justify-end p-6">
@@ -125,15 +95,15 @@ export default function Navbar() {
           </button>
         </div>
         <div className="flex flex-col items-center bg-white h-full pt-10">
-          {navItems.map(({ href, label, img }) => (
+          {navItems.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
               className={`${pathname === href
                 ? 'underline text-blue-400'
                 : 'text-black hover:underline'
-                } py-3 text-lg`}
-              onClick={() => setIsMenuOpen(false)} // Cerrar menú al hacer clic en el enlace
+              } py-3 text-lg`}
+              onClick={() => setIsMenuOpen(false)}
             >
               {label}
             </Link>
