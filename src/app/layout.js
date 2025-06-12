@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar className="sticky top-0 z-50 bg-black"/>
-        <main>{children}</main>
+        <main className="mt-[72px]">{children}</main>
       </body>
     </html>
   );

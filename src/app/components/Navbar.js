@@ -1,12 +1,35 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Para manejar la apertura y cierre del menú en móvil
+  const [showNavbar, setShowNavbar] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY < 10) {
+        setShowNavbar(true);
+        lastScrollY.current = window.scrollY;
+        return;
+      }
+      if (window.scrollY > lastScrollY.current) {
+        // Scroll hacia abajo
+        setShowNavbar(false);
+      } else {
+        // Scroll hacia arriba
+        setShowNavbar(true);
+      }
+      lastScrollY.current = window.scrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
     { href: '/', label: 'Inicio', img: '/images/home.png' },
@@ -17,7 +40,11 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-[#F4F6F8] text-black px-6 py-4 shadow-md">
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 bg-[#F4F6F8] text-black px-6 py-4 shadow-md transition-transform duration-300
+    ${showNavbar ? 'translate-y-0' : '-translate-y-full'}
+  `}
+    >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Imagen (Logotipo o ícono) */}
         <img
