@@ -55,34 +55,32 @@ export default function Navbar() {
                 href={href}
                 className={`group border-b-2 border-blue-400 w-[150px] h-[60px] rounded-[12px] flex items-center justify-center transition-all text-base
                     ${pathname === href
-                    ? 'text-blue-400 bg-blue-50'
+                    ? 'text-blue-400 bg-blue-50 '
                     : 'text-black bg-white hover:bg-blue-50 hover:text-blue-400 hover:border-blue-400'}
                 `}
                 style={{ position: 'relative' }}
               >
-              <div className={`
-                flex flex-col items-center justify-center w-full h-full relative
-                ${(pathname === href) ? '' : 'group-hover:justify-center'}
-              `}>
+              <div
+                className={`
+                  flex flex-col items-center justify-center w-full h-full relative
+                  ${(pathname === href) ? '' : 'group-hover:justify-center'}
+                `}
+              >
               <img
                 src={img}
                 alt={label}
-                className={`
-                  w-8 h-8 transition-opacity mb-1
-                  ${(pathname === href) ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}
-                `}
+                className={`w-8 h-8 mb-1 transition-all duration-300
+    ${pathname === href ? 'spin-twice' : ''}
+    group-hover:spin-twice
+  `}
               />
               <span
-                className={`
-                text-sm w-full transition-all duration-300 text-center
-                ${(pathname === href) ? 'mt-1' : ''}
-                ${(pathname === href) ? '' : 'group-hover:mt-1'}
-                `}
+                className="text-sm w-full transition-all duration-300 text-center"
                 style={{ minHeight: '1.5rem' }}
               >
-              {label}
-            </span>
-          </div>
+                {label}
+              </span>
+            </div>
         </Link>
       </li>))}
     </ul>
