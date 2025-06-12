@@ -69,7 +69,7 @@ export default function Navbar() {
                   <img
                     src={img}
                     alt={label}
-                    className="w-8 h-8 mb-1 transition-all duration-300"
+                    className={`w-8 h-8 mb-1 transition-all duration-300 ${pathname === href ? 'spin-twice' : ''}`}
                   />
                   <span
                     className="text-sm w-full transition-all duration-300 text-center"
