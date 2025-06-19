@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import tailwindConfig from '../../../tailwind.config.js';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -86,29 +87,49 @@ export default function Navbar() {
 
       {/* Menú lateral para dispositivos móviles */}
       <div
-        className={`lg:hidden fixed inset-0 bg-black bg-opacity-50 z-50 ${isMenuOpen ? 'block' : 'hidden'}`}
-        onClick={() => setIsMenuOpen(false)}
+        className={`lg:hidden fixed inset-0 z-50 ${isMenuOpen ? 'flex' : 'hidden'}`}
       >
-        <div className="flex justify-end p-6">
-          <button onClick={() => setIsMenuOpen(false)} className="text-white text-3xl">
+        {/* Menú lateral 4/6 con color #F4F6F8 */}
+        <div className="relative w-4/6 h-full bg-[#F4F6F8] flex flex-col">
+        {/* Botón de cerrar, centrado vertical y pegado al borde derecho */}
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="absolute -right-5 top-1/2 text-white text-3xl z-10 bg-[#FF0000] rounded-full px-3 py-1 shadow"
+            style={{ transform: 'translateY(-50%)' }}
+            aria-label="Cerrar menú"
+          >
             &times;
           </button>
+          {/* Logo centrado arriba */}
+          <div className="flex justify-center items-center pt-8 pb-4">
+            <img
+              src="/images/logo.png"
+              alt="Logo"
+              className="h-20 w-auto"
+            />
+          </div>
+          {/* Lista de navegación centrada */}
+          <div className="flex flex-col items-center h-full pt-2">
+            {navItems.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className={`py-3 text-lg w-full text-center transition-colors
+                  ${pathname === href
+                    ? 'text-blue-400'
+                    : 'text-black hover:text-blue-300'}
+                `}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col items-center bg-white h-full pt-10">
-          {navItems.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={`${pathname === href
-                ? 'underline text-blue-400'
-                : 'text-black hover:underline'
-              } py-3 text-lg`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
+        {/* Fondo negro opaco 2/6 al lado derecho */}
+        <div
+          className="w-2/6 h-full bg-[#0D4763] bg-opacity-50"
+        ></div>
       </div>
     </nav>
   );
