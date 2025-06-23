@@ -1,13 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import tailwindConfig from '../../../tailwind.config.js';
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Bloquear scroll cuando el menú está abierto
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+    // Limpieza por si el componente se desmonta con el menú abierto
+    return () => document.body.classList.remove('overflow-hidden');
+  }, [isMenuOpen]);
 
   const navItems = [
     { href: '/', label: 'Inicio', img: '/images/home.png' },
@@ -49,7 +59,7 @@ export default function Navbar() {
         </button>
 
         {/* Menú en pantallas grandes (computadora y tablet) */}
-        <ul className={`lg:flex ${isMenuOpen ? 'block' : 'hidden'} space-x-3`}>
+        <ul className={`lg:flex ${isMenuOpen ? 'hidden block' : 'hidden'} space-x-3`}>
           {navItems.map(({ href, label, img }) => (
             <li key={href} className="relative">
               <Link
@@ -90,34 +100,34 @@ export default function Navbar() {
         className={`lg:hidden fixed inset-0 z-50 ${isMenuOpen ? 'flex' : 'hidden'}`}
       >
         {/* Menú lateral 4/6 con color #F4F6F8 */}
-        <div className="relative w-4/6 h-full bg-[#F4F6F8] flex flex-col">
-        {/* Botón de cerrar, centrado vertical y pegado al borde derecho */}
+        <div className="relative w-4/6 h-full bg-[#F4F6F8] grid grid-rows-[auto_1fr_auto]">
+          {/* Botón de cerrar */}
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="absolute -right-5 top-1/2 text-white text-3xl z-10 bg-[#FF0000] rounded-full px-3 py-1 shadow"
+            className="absolute -right-5 top-1/2 text-white text-3xl z-10 bg-[#FF0000] rounded-full px-3 py-1 shadow cursor-pointer"
             style={{ transform: 'translateY(-50%)' }}
             aria-label="Cerrar menú"
           >
             &times;
           </button>
           {/* Logo centrado arriba */}
-          <div className="flex justify-center items-center pt-8 pb-4">
+          <div className="flex justify-center items-center pt-8 pb-4 sm:pt-12 sm:pb-6 md:pt-16 md:pb-8 row-start-1">
             <img
               src="/images/logo.png"
               alt="Logo"
               className="h-20 w-auto"
             />
           </div>
-          {/* Lista de navegación centrada */}
-          <div className="flex flex-col items-center h-full pt-2">
+          {/* Lista de navegación centrada y expandible */}
+          <div className="flex flex-col items-center justify-center h-full pt-2 gap-4 sm:gap-6 md:gap-8 row-start-2">
             {navItems.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
-                className={`py-3 text-lg w-full text-center transition-colors
+                className={`py-3 text-lg w-full text-center transition-colors cursor-pointer
                   ${pathname === href
                     ? 'text-blue-400'
-                    : 'text-black hover:text-blue-300'}
+                    : 'text-black hover:text-blue-00'}
                 `}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -128,7 +138,7 @@ export default function Navbar() {
         </div>
         {/* Fondo negro opaco 2/6 al lado derecho */}
         <div
-          className="w-2/6 h-full bg-[#0D4763] bg-opacity-50"
+          className="w-2/6 h-full bg-black/25 backdrop-blur-sm"
         ></div>
       </div>
     </nav>
