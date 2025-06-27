@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 function useIsSmallScreen() {
   const [isSmall, setIsSmall] = useState(false);
   useEffect(() => {
-    const check = () => setIsSmall(window.innerWidth < 640);
+    const check = () => setIsSmall(window.innerWidth < 550);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
@@ -18,7 +18,7 @@ function useIsSmallScreen() {
 function useIsMedioumScreen() {
   const [isMedioum, setIsMedioum] = useState(false);
   useEffect(() => {
-    const check = () => setIsMedioum(window.innerWidth >= 640 && window.innerWidth < 800);
+    const check = () => setIsMedioum(window.innerWidth >= 550 && window.innerWidth < 1000);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
@@ -26,39 +26,62 @@ function useIsMedioumScreen() {
   return isMedioum;
 }
 
+function useIsBigScreen() {
+  const [isBig, setIsBig] = useState(false);
+  useEffect(() => {
+    const check = () => setIsBig(window.innerWidth >= 1000 && window.innerWidth < 1500);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isBig;
+}
 
 export default function Carrucel() {
   const isSmall = useIsSmallScreen();
+  const isMedioum = useIsMedioumScreen();
+  const isBig = useIsBigScreen();
+
   return (
     <div>
-      <br></br>
-    <Carousel
-      autoplay
-      autoplaySpeed={500}
-      pauseOnHover={false}
-      className="w-[98%] h-[160px] sm:h-[400px] mx-auto"
-    >
-      <div>
-        <img
-          src={isSmall ? "/images/carrucel/logo.png" : "/images/carrucel/logo.png"}
-          alt="Carousel Image 1 responsive"
-          className={isSmall ? "object-fill w-full h-[160px] bg-[#364d79] mx-auto" : "object-fill w-full h-[400px] bg-[#364d79] mx-auto"}
-        />
-      </div>
-      <div>
-        <img
-          src={isSmall ? "/images/carrucel/Equipo.jpg" : "/images/carrucel/Equipo.jpg"}
-          alt="Carousel Image 1 responsive"
-          className={isSmall ? "object-fill w-full h-[160px] bg-[#364d79] mx-auto" : "object-fill w-full h-[400px] bg-[#364d79] mx-auto"}
-        />
-      </div>
-      <div>
-        <h3 className={isSmall ? "object-fill w-full h-[160px] bg-[#364d79] mx-auto text-white text-center leading-[160px]" : "object-fill w-full h-[400px] bg-[#364d79] mx-auto text-white text-center leading-[400px]"}>3</h3>
-      </div>
-      <div>
-        <h3 className={isSmall ? "object-fill w-full h-[160px] bg-[#364d79] mx-auto text-white text-center leading-[160px]" : "object-fill w-full h-[400px] bg-[#364d79] mx-auto text-white text-center leading-[400px]"}>4</h3>
-      </div>
-    </Carousel>
+      <br />
+      <Carousel
+        autoplay
+        autoplaySpeed={10000}
+        pauseOnHover={false}
+        dots={false}
+        arrows={true}
+        className={
+          isSmall
+            ? "w-[98%] h-[200px] mx-auto bg-black"
+          : isMedioum
+            ? "w-[98%] h-[300px] mx-auto bg-black"
+          : isBig
+            ? "w-[98%] h-[400px] mx-auto bg-black"
+            : "w-[98%] h-[500px] mx-auto bg-black"
+        }
+      >
+        <div>
+          <img
+            src={isSmall ? "/images/carrucel/logo.png" : isMedioum ? "/images/carrucel/logo.png" : isBig ? "/images/carrucel/logo.png" : "/images/carrucel/logo.png"}
+            alt="Carousel Image 1 responsive"
+            className={isSmall ? "relative object-fill w-full h-[200px] bg-[#364d79] mx-auto" : isMedioum ? "relative object-fill w-full h-[300px] bg-[#364d79] mx-auto" : isBig ? "relative object-fill w-full h-[400px] bg-[#364d79] mx-auto" : "relative object-fill w-full h-[500px] bg-[#364d79] mx-auto"}
+          />
+        </div>
+        <div>
+          <img
+            src={isSmall ? "/images/carrucel/CEquipo_854_480.jpg" : isMedioum ? "/images/carrucel/MEquipo_1280_720.jpg" : "/images/carrucel/GEquipo_1920_1080.jpg"}
+            alt="Carousel Image 1 responsive"
+            className={isSmall ? "relative object-fill w-full h-[200px] bg-[#364d79] mx-auto" : isMedioum ? "relative object-fill w-full h-[300px] bg-[#364d79] mx-auto" : isBig ? "relative object-fill w-full h-[400px] bg-[#364d79] mx-auto" : "relative object-fill w-full h-[500px] bg-[#364d79] mx-auto"}
+          />
+        </div>
+        <div>
+          <h3 className={isSmall ? "relative object-fill w-full h-[200px] bg-[#364d79] mx-auto text-white text-center leading-[200px]" : isMedioum ? "relative object-fill w-full h-[300px] bg-[#008f39] mx-auto text-white text-center leading-[300px]" : isBig ? "relative object-fill w-full h-[400px] bg-[#572364] mx-auto text-white text-center leading-[400px]" : "relative object-fill w-full h-[500px] bg-[#645823] mx-auto text-white text-center leading-[500px]"}>3</h3>
+        </div>
+        <div>
+          <h3 className={isSmall ? "relative object-fill w-full h-[200px] bg-[#364d79] mx-auto text-white text-center leading-[200px]" : isMedioum ? "relative object-fill w-full h-[300px] bg-[#008f39] mx-auto text-white text-center leading-[300px]" : isBig ? "relative object-fill w-full h-[400px] bg-[#572364] mx-auto text-white text-center leading-[400px]" : "relative object-fill w-full h-[500px] bg-[#645823] mx-auto text-white text-center leading-[500px]"}>4</h3>
+        </div>
+      </Carousel>
     </div>
   );
 }
