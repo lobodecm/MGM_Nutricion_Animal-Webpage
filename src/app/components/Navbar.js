@@ -28,8 +28,8 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-[#F4F6F8] text-black px-6 py-4 shadow-md">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <nav className=" fixed top-0 left-0 w-full z-50 bg-[#F4F6F8] text-black px-6 py-4 shadow-md">
+      <div className="max-w-15xl mx-auto flex justify-between items-center w-full px-4 py-2">
         {/* Imagen (Logotipo o ícono) */}
         <img
           src="/images/logo.png"
