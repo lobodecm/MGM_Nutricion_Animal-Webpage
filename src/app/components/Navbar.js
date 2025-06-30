@@ -34,29 +34,46 @@ export default function Navbar() {
         <img
           src="/images/logo.png"
           alt="Logo"
-          className="h-15"
+          className="h-15 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
         />
 
-        {/* Menú Hamburguesa para pantallas pequeñas */}
-        <button
-          className="lg:hidden block text-black focus:outline-none"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className="w-8 h-8"
+        {/* whatsapp para pantallas pequeñas */}
+        <div className="flex items-center lg:hidden">
+          {/* Botón WhatsApp */}
+          <a
+            href="https://wa.me/+524493981492" // Reemplaza por tu número de WhatsApp
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block mr-4 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
+            <img
+              src="/images/whatsapp.png"
+              alt="WhatsApp"
+              className="h-12 w-12 rounded-full"
             />
-          </svg>
-        </button>
+          </a>
+          {/* Botón hamburguesa */}
+          <button
+            className="block text-black focus:outline-none transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="w-10 h-10"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+
 
         {/* Menú en pantallas grandes (computadora y tablet) */}
         <ul className={`lg:flex ${isMenuOpen ? 'hidden block' : 'hidden'} space-x-3`}>
@@ -66,8 +83,8 @@ export default function Navbar() {
                 href={href}
                 className={`group border-b-2 border-blue-400 w-[150px] h-[60px] rounded-[12px] flex items-center justify-center transition-all text-base
                   ${pathname === href
-                    ? 'text-blue-400 bg-blue-50 '
-                    : 'text-black bg-white hover:bg-blue-50 hover:text-blue-400 hover:border-blue-400'}
+                    ? 'text-blue-400 bg-blue-50 transition-transform transform hover:scale-110 cursor-pointer'
+                    : 'text-black bg-white hover:bg-blue-50 hover:text-blue-400 hover:border-blue-400 transition-transform transform hover:scale-110 cursor-pointer'}
                 `}
                 style={{ position: 'relative' }}
               >
