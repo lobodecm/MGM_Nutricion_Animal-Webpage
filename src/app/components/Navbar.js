@@ -44,7 +44,7 @@ export default function Navbar() {
             href="https://wa.me/+524493981492" // Reemplaza por tu número de WhatsApp
             target="_blank"
             rel="noopener noreferrer"
-            className="block mr-4 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
+            className="block mr-8 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
           >
             <img
               src="/images/whatsapp.png"
@@ -141,10 +141,10 @@ export default function Navbar() {
               <Link
                 key={href}
                 href={href}
-                className={`py-3 text-lg w-full text-center transition-colors cursor-pointer
+                className={`py-3 text-lg w-[80%] text-center transition-colors bg-[#0D4763] hover:bg-[#0D4763] hover:text-blue-400 hover:border-blue-400 transition-transform transform hover:scale-110 cursor-pointer rounded-2xl
                   ${pathname === href
-                    ? 'text-blue-400'
-                    : 'text-black hover:text-blue-00'}
+                    ? 'text-blue-400 text-xl font-bold'
+                    : 'text-white hover:text-blue-400 hover:border-blue-400'}
                 `}
                 onClick={() => setIsMenuOpen(false)}
               >
