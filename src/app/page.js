@@ -3,7 +3,7 @@ import Carrucel from "./components/Carrucel.js";
 export default function Home() {
   return (
     <>
-    <h1 className="grid text-2xl sm:text-3xl font-bold tracking-tight text-center mt-32">
+    <h1 className="grid text-2xl sm:text-3xl lg:mt-40 font-bold tracking-tight text-center mt-32">
       CALIDAD EN PRODUCTO
     </h1>
     <Carrucel />

@@ -20,11 +20,11 @@ export default function Navbar() {
   }, [isMenuOpen]);
 
   const navItems = [
-    { href: '/', label: 'Inicio', img: '/images/home.png' },
-    { href: '/noticias', label: 'Noticias', img: '/images/noticias.png' },
-    { href: '/quienessomos', label: 'Quiénes Somos', img: '/images/quienessomos.png' },
-    { href: '/contacto', label: 'Contacto', img: '/images/contacto.png' },
-    { href: '/usuario', label: 'Usuario', img: '/images/usuario.png' },
+    { href: '/', label: 'Inicio', img: '/images/Menu/home.png' },
+    { href: '/noticias', label: 'Noticias', img: '/images/Menu/noticias.png' },
+    { href: '/quienessomos', label: 'Quiénes Somos', img: '/images/Menu/quienessomos.png' },
+    { href: '/contacto', label: 'Contacto', img: '/images/Menu/contacto.png' },
+    { href: '/usuario', label: 'Usuario', img: '/images/Menu/usuario.png' },
   ];
 
   return (
@@ -32,7 +32,7 @@ export default function Navbar() {
       <div className="max-w-15xl mx-auto flex justify-between items-center w-full px-4 py-2">
         {/* Imagen (Logotipo o ícono) */}
         <img
-          src="/images/logo.png"
+          src="/images/Menu/logo.png"
           alt="Logo"
           className="h-15 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
         />
@@ -47,7 +47,7 @@ export default function Navbar() {
             className="block mr-8 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
           >
             <img
-              src="/images/whatsapp.png"
+              src="/images/Redes/whatsapp.png"
               alt="WhatsApp"
               className="h-12 w-12 rounded-full"
             />
@@ -121,16 +121,20 @@ export default function Navbar() {
           {/* Botón de cerrar */}
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="absolute -right-5 top-1/2 text-white text-3xl z-10 bg-[#FF0000] rounded-full px-3 py-1 shadow cursor-pointer"
+            className="absolute -right-10 top-1/2 z-10 bg-[#F4F6F8] shadow cursor-pointer"
             style={{ transform: 'translateY(-50%)' }}
             aria-label="Cerrar menú"
           >
-            &times;
+            <img
+              src="/images/Menu/Flecha.png"
+              alt="Logo"
+              className="h-15 w-auto"
+            />
           </button>
           {/* Logo centrado arriba */}
           <div className="flex justify-center items-center pt-8 pb-4 sm:pt-12 sm:pb-6 md:pt-16 md:pb-8 row-start-1">
             <img
-              src="/images/logo.png"
+              src="/images/Menu/logo.png"
               alt="Logo"
               className="h-20 w-auto"
             />
@@ -143,14 +147,57 @@ export default function Navbar() {
                 href={href}
                 className={`py-3 text-lg w-[80%] text-center transition-colors bg-[#0D4763] hover:bg-[#0D4763] hover:text-blue-400 hover:border-blue-400 transition-transform transform hover:scale-110 cursor-pointer rounded-2xl
                   ${pathname === href
-                    ? 'text-blue-400 text-xl font-bold'
-                    : 'text-white hover:text-blue-400 hover:border-blue-400'}
+                    ? 'text-blue-400 text-xl font-bold bg-[#0D4763] transition-transform transform hover:scale-110 cursor-pointer'
+                    : 'text-white hover:text-[#0D4763] hover:border-blue-400 transition-transform transform hover:scale-110 cursor-pointer'}
                 `}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {label}
               </Link>
             ))}
+          </div>
+
+          {/* Sección de Redes Sociales */}
+          <div className="flex flex-col items-center justify-center w-full pb-8">
+            <h1 className="text-xl font-bold mb-8 text-center">Redes Sociales</h1>
+            <div className="grid grid-cols-2 gap-4 w-3/4">
+              <a
+                href="https://www.facebook.com/MGMNutricion/?locale=es_LA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center justify-center hover:bg-black/50 rounded-2xl transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
+              >
+                <img src="/images/Redes/facebook.png" alt="Facebook" className="h-15 w-15 mb-1" />
+                Facebook
+              </a>
+              <a
+                href="https://mx.linkedin.com/company/mgm-nutrici%C3%B3n-animal-sa-de-cv"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center justify-center hover:bg-black/50 rounded-2xl transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
+              >
+                <img src="/images/Redes/linkedin.png" alt="linkedin" className="h-15 w-15 mb-1" />
+                Linked-in
+              </a>
+              <a
+                href="https://www.instagram.com/mgm.nutricion.animal/?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center justify-center hover:bg-black/50 rounded-2xl transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
+              >
+                <img src="/images/Redes/instagram.png" alt="Instagram" className="h-15 w-15 mb-1" />
+                Instagram
+              </a>
+              <a
+                href="https://wa.me/+524493981492"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center justify-center hover:bg-black/50 rounded-2xl transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
+              >
+                <img src="/images/Redes/whatsapp.png" alt="WhatsApp" className="h-15 w-15 mb-1" />
+                WhatsApp
+              </a>
+            </div>
           </div>
         </div>
         {/* Fondo negro opaco 2/6 al lado derecho */}
