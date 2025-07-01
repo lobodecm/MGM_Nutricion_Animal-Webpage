@@ -117,7 +117,7 @@ export default function Navbar() {
         className={`lg:hidden fixed inset-0 z-50 ${isMenuOpen ? 'flex' : 'hidden'}`}
       >
         {/* Menú lateral 4/6 con color #F4F6F8 */}
-        <div className="relative w-4/6 h-full bg-[#F4F6F8] grid grid-rows-[auto_1fr_auto]">
+        <div className="relative w-4/6 h-full bg-[#F4F6F8] grid grid-rows-[auto_auto_auto]">
           {/* Botón de cerrar */}
           <button
             onClick={() => setIsMenuOpen(false)}
@@ -132,7 +132,7 @@ export default function Navbar() {
             />
           </button>
           {/* Logo centrado arriba */}
-          <div className="flex justify-center items-center pt-8 pb-4 sm:pt-12 sm:pb-6 md:pt-16 md:pb-8 row-start-1">
+          <div className="flex justify-center items-center pt-4 pb-4 sm:pt-4 sm:pb-4 md:pt-4 md:pb-4 row-start-1">
             <img
               src="/images/Menu/logo.png"
               alt="Logo"
@@ -140,7 +140,7 @@ export default function Navbar() {
             />
           </div>
           {/* Lista de navegación centrada y expandible */}
-          <div className="flex flex-col items-center justify-center h-full pt-2 gap-4 sm:gap-6 md:gap-8 row-start-2">
+          <div className="flex flex-col items-center justify-center h-full pt-2 gap-2 sm:gap-3 md:gap-4 row-start-2">
             {navItems.map(({ href, label }) => (
               <Link
                 key={href}
@@ -159,8 +159,8 @@ export default function Navbar() {
 
           {/* Sección de Redes Sociales */}
           <div className="flex flex-col items-center justify-center w-full pb-8">
-            <h1 className="text-xl font-bold mb-8 text-center">Redes Sociales</h1>
-            <div className="grid grid-cols-2 gap-4 w-3/4">
+            <h1 className="text-xl font-bold mt-4 mb-4 text-center">Redes Sociales</h1>
+            <div className="grid grid-cols-2 gap-4 w-3/4 sm:grid-cols-2 md:grid-cols-4">
               <a
                 href="https://www.facebook.com/MGMNutricion/?locale=es_LA"
                 target="_blank"
