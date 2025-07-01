@@ -34,7 +34,7 @@ export default function Navbar() {
         <img
           src="/images/Menu/logo.png"
           alt="Logo"
-          className="h-15 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
+          className="h-15 pr-3 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
         />
 
         {/* whatsapp para pantallas pequeñas */}
@@ -121,14 +121,14 @@ export default function Navbar() {
           {/* Botón de cerrar */}
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="absolute -right-10 top-1/2 z-10 bg-[#F4F6F8] shadow cursor-pointer"
+            className="absolute -right-10 top-1/2 z-10 bg-black cursor-pointer rounded-2xl border-1 border-black"
             style={{ transform: 'translateY(-50%)' }}
             aria-label="Cerrar menú"
           >
             <img
               src="/images/Menu/Flecha.png"
               alt="Logo"
-              className="h-15 w-auto"
+              className="h-14 w-auto rounded-2xl hover:border-1 hover:border-black transition-transform transform hover:scale-120 lg:h-20 cursor-pointer"
             />
           </button>
           {/* Logo centrado arriba */}
