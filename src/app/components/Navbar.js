@@ -28,13 +28,13 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className=" fixed top-0 left-0 w-full z-50 bg-[#0D4763] text-black px-6 py-4 shadow-md">
+    <nav className=" fixed top-0 left-0 w-full z-50 bg-[#F4F6F8] text-black px-6 py-4 shadow-md">
       <div className="max-w-15xl mx-auto flex justify-between items-center w-full px-4 py-2">
         {/* Imagen (Logotipo o ícono) */}
         <img
           src="/images/Menu/logo.png"
           alt="Logo"
-          className="h-15 pr-3 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer border-2 border-white/25 rounded-2xl"
+          className="h-15 pr-3 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
         />
 
         {/* whatsapp para pantallas pequeñas */}
@@ -62,7 +62,7 @@ export default function Navbar() {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              className="w-10 h-10 stroke-white"
+              className="w-10 h-10"
             >
               <path
                 strokeLinecap="round"
@@ -81,10 +81,10 @@ export default function Navbar() {
             <li key={href} className="relative">
               <Link
                 href={href}
-                className={`group border-b-2 border-white/25 w-[150px] h-[60px] rounded-[12px] flex items-center justify-center transition-all text-base
+                className={`group border-b-2  w-[150px] h-[60px] rounded-[12px] flex items-center justify-center transition-all text-base
                   ${pathname === href
-                    ? 'text-blue-400 bg-[#0D4763] transition-transform transform hover:scale-110 cursor-pointer hover:border-white'
-                    : 'text-white bg-[#0D4763] hover:bg-[#0D4763] hover:text-white hover:border-white transition-transform transform hover:scale-110 cursor-pointer'}
+                    ? 'text-blue-400 bg-blue-50 transition-transform transform hover:scale-110 cursor-pointer'
+                    : 'text-black bg-white hover:bg-blue-50 hover:text-blue-400 hover:border-blue-400 transition-transform transform hover:scale-110 cursor-pointer'}
                 `}
                 style={{ position: 'relative' }}
               >
@@ -114,7 +114,7 @@ export default function Navbar() {
 
       {/* Menú lateral para dispositivos móviles */}
       <div
-        className={`lg:hidden fixed inset-0 z-50 ${isMenuOpen ? 'flex bg-[]' : 'hidden'}`}
+        className={`lg:hidden fixed inset-0 z-50 ${isMenuOpen ? 'flex' : 'hidden'}`}
       >
         {/* Menú lateral 4/6 con color #F4F6F8 */}
         <div className="relative w-4/6 h-full bg-[#F4F6F8] grid grid-rows-[auto_auto_auto]">
