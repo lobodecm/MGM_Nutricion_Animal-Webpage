@@ -10,10 +10,10 @@ const colores = [
 ];
 
 const titulos = [
-  "Alimentos",
-  "Vitaminas",
-  "Suplementos",
-  "Minerales"
+  "Premezclas",
+  "Alimento Terminado",
+  "Laboratorio",
+  "Alimento Purecan"
 ];
 
 export default function Home() {
@@ -25,8 +25,8 @@ export default function Home() {
         CALIDAD EN PRODUCTO
       </h1>
       <Carrucel />
-      <div className="grid grid-rows-[auto_auto_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-        <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-full">
+      <div className="grid grid-rows-[auto_auto_auto] items-center justify-items-center p-8 min-h-screen pb-20 gap-10 font-[family-name:var(--font-geist-sans)]">
+        <main className="flex flex-col gap-[32px] row-start-2 items-center w-full">
           {/* Título principal */}
           <h2 className="text-2xl sm:text-3xl font-bold text-[#0D4763] text-center">
             Conoce nuestros productos
