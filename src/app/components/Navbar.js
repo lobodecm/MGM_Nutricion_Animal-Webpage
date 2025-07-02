@@ -34,7 +34,7 @@ export default function Navbar() {
         <img
           src="/images/Menu/logo.png"
           alt="Logo"
-          className="h-15 pr-3 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
+          className="h-15 pr-3 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer border-2 border-white/25 rounded-2xl"
         />
 
         {/* whatsapp para pantallas pequeñas */}
