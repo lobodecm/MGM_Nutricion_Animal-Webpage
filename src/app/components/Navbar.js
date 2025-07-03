@@ -20,11 +20,11 @@ export default function Navbar() {
   }, [isMenuOpen]);
 
   const navItems = [
-    { href: '/', label: 'Inicio', img: '/images/Menu/azul/home.png' },
-    { href: '/noticias', label: 'Noticias', img: '/images/Menu/azul/noticias.png' },
-    { href: '/quienessomos', label: 'Quiénes Somos', img: '/images/Menu/azul/quienessomos.png' },
-    { href: '/contacto', label: 'Contacto', img: '/images/Menu/azul/contacto.png' },
-    { href: '/usuario', label: 'Usuario', img: '/images/Menu/azul/usuario.png' },
+    { href: '/', label: 'Inicio', img: '/images/Menu/home.png' },
+    { href: '/noticias', label: 'Noticias', img: '/images/Menu/noticias.png' },
+    { href: '/quienessomos', label: 'Quiénes Somos', img: '/images/Menu/quienessomos.png' },
+    { href: '/contacto', label: 'Contacto', img: '/images/Menu/contacto.png' },
+    { href: '/usuario', label: 'Usuario', img: '/images/Menu/usuario.png' },
   ];
 
   return (
