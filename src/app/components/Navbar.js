@@ -20,11 +20,11 @@ export default function Navbar() {
   }, [isMenuOpen]);
 
   const navItems = [
-    { href: '/', label: 'Inicio', img: '/images/Menu/blanco/home.png' },
-    { href: '/noticias', label: 'Noticias', img: '/images/Menu/blanco/noticias.png' },
-    { href: '/quienessomos', label: 'Quiénes Somos', img: '/images/Menu/blanco/quienessomos.png' },
-    { href: '/contacto', label: 'Contacto', img: '/images/Menu/blanco/contacto.png' },
-    { href: '/usuario', label: 'Usuario', img: '/images/Menu/blanco/usuario.png' },
+    { href: '/', label: 'Inicio', img: '/images/Menu/azul/home.png' },
+    { href: '/noticias', label: 'Noticias', img: '/images/Menu/azul/noticias.png' },
+    { href: '/quienessomos', label: 'Quiénes Somos', img: '/images/Menu/azul/quienessomos.png' },
+    { href: '/contacto', label: 'Contacto', img: '/images/Menu/azul/contacto.png' },
+    { href: '/usuario', label: 'Usuario', img: '/images/Menu/azul/usuario.png' },
   ];
 
   return (
@@ -76,15 +76,16 @@ export default function Navbar() {
 
 
         {/* Menú en pantallas grandes (computadora y tablet) */}
+        {/* se estan modificando los iconos a color azul tiene que concuerdar con los colores de la pagina para que se vea bien */}
         <ul className={`lg:flex ${isMenuOpen ? 'hidden block' : 'hidden'} space-x-3`}>
           {navItems.map(({ href, label, img }) => (
             <li key={href} className="relative">
               <Link
                 href={href}
-                className={`group border-b-2  w-[150px] h-[60px] rounded-[12px] flex items-center justify-center transition-all text-base
+                className={`group border-b-2  w-[150px] h-[60px] rounded-[12px] flex items-center justify-center transition-all text-base 
                   ${pathname === href
-                    ? 'text-blue-400 bg-blue-50 transition-transform transform hover:scale-110 cursor-pointer'
-                    : 'text-black bg-white hover:bg-blue-50 hover:text-blue-400 hover:border-blue-400 transition-transform transform hover:scale-110 cursor-pointer'}
+                    ? 'text-blue-400 bg-blue-50 transition-transform transform hover:scale-110 cursor-pointer hover:text-[#0D4763] hover:border-[#0D4763] text-[#0D4763] border-[#0D4763]'
+                    : 'text-[#0D4763] bg-white hover:bg-blue-50 hover:text-[#0D4763] hover:border-[#0D4763] transition-transform transform hover:scale-110 cursor-pointer'}
                 `}
                 style={{ position: 'relative' }}
               >
