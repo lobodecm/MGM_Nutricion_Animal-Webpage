@@ -76,7 +76,6 @@ export default function Navbar() {
 
 
         {/* Menú en pantallas grandes (computadora y tablet) */}
-        {/* se estan modificando los iconos a color azul tiene que concuerdar con los colores de la pagina para que se vea bien */}
         <ul className={`lg:flex ${isMenuOpen ? 'hidden block' : 'hidden'} space-x-3`}>
           {navItems.map(({ href, label, img }) => (
             <li key={href} className="relative">
