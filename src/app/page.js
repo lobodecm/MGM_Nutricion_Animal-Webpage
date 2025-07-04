@@ -51,7 +51,7 @@ export default function Home() {
           </h1>
 
           {/* Grid de 4 contenedores responsivos con título abajo */}
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 justify-items-center m-auto">
+          <div className="w-full grid grid-cols-2 xl:grid-cols-4 gap-6 justify-items-center m-auto">
             {[0, 1, 2, 3].map((i) => {
 
               // Renderizar el span solo en el final de la fila correspondiente
@@ -62,11 +62,11 @@ export default function Home() {
                     onClick={() => setSeleccionado(seleccionado === i ? null : i)}
                     className="w-[150px] h-[200px] sm:w-[250px] sm:h-[150px] md:w-[300px] md:h-[200px] lg:w-[300px] lg:h-[200px] xl:w-[300px] xl:h-[200px] rounded-xl shadow-md flex flex-col items-center justify-between text-xl font-bold transition-transform hover:scale-105 bg-white border-2 border-gray-200 p-4 hover:border-[#0D4763] active:border-[#0D4763] focus:outline-none focus:ring-2 focus:ring-[#0D4763] focus:ring-opacity-50"
                   >
-                    <div className="flex-1 flex items-center justify-center w-full">
+                    <div className="flex-2 flex items-center justify-center w-full">
                       <img
                         src={imagenes[i]}
                         alt={titulos[i]}
-                        className="h-20 w-20 object-contain"
+                        className="h-30 w-30 object-contain"
                       />
                     </div>
                     <span className="text-base font-semibold text-[#0D4763] mt-2">
@@ -89,7 +89,7 @@ export default function Home() {
                   </div>
 
                   {/* 2 columnas: debajo del segundo y cuarto grid */}
-                  <div className="hidden sm:block xl:hidden w-full left-1/2 transform translate-x-1/10">
+                  <div className="hidden sm:block xl:hidden w-full left-1/2  transform translate-x-1/10">
                     {((i === 0 && seleccionado !== null && seleccionado < 2) ||
                       (i === 2 && seleccionado !== null && seleccionado > 1)) && (
                       <div
