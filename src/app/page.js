@@ -53,18 +53,6 @@ export default function Home() {
           {/* Grid de 4 contenedores responsivos con título abajo */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 justify-items-center m-auto">
             {[0, 1, 2, 3].map((i) => {
-              // Detectar breakpoints
-              // En xl: 4 columnas, en sm/md/lg: 2 columnas, en base: 1 columna
-              // Para saber si es el final de la fila:
-              // - 1 columna: todos son fin de fila
-              // - 2 columnas: i % 2 === 1
-              // - 4 columnas: i === 3
-
-              // Para saber si el seleccionado está en la fila actual:
-              // - 1 columna: i === seleccionado
-              // - 2 columnas: Math.floor(i/2) === Math.floor(seleccionado/2)
-              // - 4 columnas: i === 3 && seleccionado !== null
-
               // Renderizar el span solo en el final de la fila correspondiente
               return (
                 <div key={i} className="flex flex-col items-center w-full">
