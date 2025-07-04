@@ -53,13 +53,14 @@ export default function Home() {
           {/* Grid de 4 contenedores responsivos con título abajo */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 justify-items-center m-auto">
             {[0, 1, 2, 3].map((i) => {
+
               // Renderizar el span solo en el final de la fila correspondiente
               return (
                 <div key={i} className="flex flex-col items-center w-full">
                   <button
                     ref={el => btnRefs.current[i] = el}
                     onClick={() => setSeleccionado(seleccionado === i ? null : i)}
-                    className="w-[150px] h-[200px] sm:w-[250px] sm:h-[150px] md:w-[300px] md:h-[200px] lg:w-[300px] lg:h-[200px] xl:w-[300px] xl:h-[200px] rounded-xl shadow-md flex flex-col items-center justify-between text-xl font-bold transition-transform hover:scale-105 bg-white border-2 border-gray-200 p-4"
+                    className="w-[150px] h-[200px] sm:w-[250px] sm:h-[150px] md:w-[300px] md:h-[200px] lg:w-[300px] lg:h-[200px] xl:w-[300px] xl:h-[200px] rounded-xl shadow-md flex flex-col items-center justify-between text-xl font-bold transition-transform hover:scale-105 bg-white border-2 border-gray-200 p-4 hover:border-[#0D4763] active:border-[#0D4763] focus:outline-none focus:ring-2 focus:ring-[#0D4763] focus:ring-opacity-50"
                   >
                     <div className="flex-1 flex items-center justify-center w-full">
                       <img
