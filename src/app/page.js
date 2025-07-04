@@ -131,11 +131,10 @@ export default function Home() {
             })}
           </div>
 
-          {/* Grid centrado al 80% del ancho Este es un grid centrado que abarca el 80% del ancho de la pantalla y su alto es proporcional al contenido.*/}
+          {/* Grid centrado al 80% del ancho */}
           <div className="w-[80%] h-[500px] mx-auto grid place-items-center bg-gray-100 rounded-xl">
             <span className="text-lg text-gray-700 font-semibold p-8 text-center">
-              Al ver tus lindos ojos, los mios se pierden en tu mirada, al verte sonreir me vuelvo muy feliz y al estar a tu lado no me quiero alejar de ti.
-              <img src="/images/Productos/feli.png" alt="ojos" className="w-50 h-50 mx-auto mt-4" />
+              Este es un grid centrado que abarca el 80% del ancho de la pantalla y su alto es proporcional al contenido.
             </span>
           </div>
         </main>
