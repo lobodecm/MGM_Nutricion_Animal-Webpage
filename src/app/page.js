@@ -26,6 +26,7 @@ const imagenes = [
 export default function Home() {
   const [seleccionado, setSeleccionado] = useState(null);
   const [topMsg, setTopMsg] = useState(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const btnRefs = useRef([]);
 
   const handleSeleccionar = (i) => {
@@ -132,11 +133,22 @@ export default function Home() {
           </div>
 
           {/* Grid centrado al 80% del ancho */}
-          <div className="w-[80%] h-[500px] mx-auto grid place-items-center bg-gray-100 rounded-xl">
-            <span className="text-lg text-gray-700 font-semibold p-8 text-center">
-              <iframe width="100%" height="400" src="https://www.youtube.com/embed/Mhj15W23IjA?si=y1Y3TjCEM_BMcH_8" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-              Este es un grid centrado que abarca el 80% del ancho de la pantalla y su alto es proporcional al contenido.
-            </span>
+          <div style={{ width: "100%", maxWidth: 600, margin: "0 auto", aspectRatio: "16/9", position: "relative" }}>
+            {!videoLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
+                <span className="text-[#0D4763] font-bold">Cargando video...</span>
+                {/* Aquí puedes poner un spinner si lo deseas */}
+              </div>
+            )}
+            <iframe
+              style={{ width: "100%", height: "100%", border: 0 }}
+              src="https://www.youtube.com/embed/Mhj15W23IjA"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              loading="lazy"
+              onLoad={() => setVideoLoaded(true)}
+            ></iframe>
           </div>
         </main>
         <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
