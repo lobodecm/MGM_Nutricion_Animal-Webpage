@@ -134,7 +134,7 @@ export default function Home() {
           {/* Grid centrado al 80% del ancho */}
           <div className="w-[80%] h-[500px] mx-auto grid place-items-center bg-gray-100 rounded-xl">
             <span className="text-lg text-gray-700 font-semibold p-8 text-center">
-              <iframe width="90%" height="400" src="https://www.youtube.com/embed/Mhj15W23IjA?si=y1Y3TjCEM_BMcH_8" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+              <iframe width="100%" height="400" src="https://www.youtube.com/embed/Mhj15W23IjA?si=y1Y3TjCEM_BMcH_8" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
               Este es un grid centrado que abarca el 80% del ancho de la pantalla y su alto es proporcional al contenido.
             </span>
           </div>
