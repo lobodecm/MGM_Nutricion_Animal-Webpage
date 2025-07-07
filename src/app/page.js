@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Carrucel from "./components/Carrucel.js";
 
 const colores = [
@@ -23,14 +23,27 @@ const imagenes = [
   "/images/Productos/purecan.png"
 ];
 
+// Hook para detectar si la pantalla es menor a 400px
+function useIsXsScreen() {
+  const [isXs, setIsXs] = useState(false);
+  useEffect(() => {
+    const check = () => setIsXs(window.innerWidth < 400);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isXs;
+}
+
 export default function Home() {
   const [seleccionado, setSeleccionado] = useState(null);
   const [topMsg, setTopMsg] = useState(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const btnRefs = useRef([]);
+  const isXs = useIsXsScreen();
 
   const handleSeleccionar = (i) => {
-    setSeleccionado(i);
+    setSeleccionado(seleccionado === i ? null : i);
     if (btnRefs.current[i]) {
       const rect = btnRefs.current[i].getBoundingClientRect();
       setTopMsg(rect.bottom + 20); // 20px debajo del botón
@@ -51,75 +64,88 @@ export default function Home() {
           </h1>
 
           {/* Grid de 4 contenedores responsivos con título abajo */}
-          <div className="w-full grid grid-cols-2 xl:grid-cols-4 gap-6 justify-items-center m-auto">
-            {[0, 1, 2, 3].map((i) => {
+          <div className={`w-full grid ${isXs ? "grid-cols-1" : "grid-cols-2 xl:grid-cols-4"} gap-6 justify-items-center m-auto`}>
+            {[0, 1, 2, 3].map((i) => (
+              <div key={i} className="flex flex-col items-center w-full">
+                <button
+                  ref={el => btnRefs.current[i] = el}
+                  onClick={() => handleSeleccionar(i)}
+                  className="w-[150px] h-[200px] sm:w-[250px] sm:h-[200px] md:w-[300px] md:h-[200px] lg:w-[300px] lg:h-[200px] xl:w-[300px] xl:h-[200px] rounded-xl shadow-md flex flex-col items-center justify-between text-xl font-bold transition-transform hover:scale-105 bg-white border-2 border-gray-200 p-4 hover:border-[#0D4763] active:border-[#0D4763] focus:outline-none focus:ring-2 focus:ring-[#0D4763] focus:ring-opacity-50"
+                >
+                  <div className="flex-2 flex items-center justify-center w-full">
+                    <img
+                      src={imagenes[i]}
+                      alt={titulos[i]}
+                      className="h-30 w-30 object-contain"
+                    />
+                  </div>
+                  <span className="text-base font-semibold text-[#0D4763] mt-2">
+                    {titulos[i]}
+                  </span>
+                </button>
 
-              // Renderizar el span solo en el final de la fila correspondiente
-              return (
-                <div key={i} className="flex flex-col items-center w-full">
-                  <button
-                    ref={el => btnRefs.current[i] = el}
-                    onClick={() => setSeleccionado(seleccionado === i ? null : i)}
-                    className="w-[150px] h-[200px] sm:w-[250px] sm:h-[150px] md:w-[300px] md:h-[200px] lg:w-[300px] lg:h-[200px] xl:w-[300px] xl:h-[200px] rounded-xl shadow-md flex flex-col items-center justify-between text-xl font-bold transition-transform hover:scale-105 bg-white border-2 border-gray-200 p-4 hover:border-[#0D4763] active:border-[#0D4763] focus:outline-none focus:ring-2 focus:ring-[#0D4763] focus:ring-opacity-50"
+                {/* SOLO para pantallas menores a 400px: mensaje debajo y centrado */}
+                {isXs && seleccionado === i && (
+                  <div
+                    className={`w-[90vw] max-w-[90vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto`}
+                    style={{ minHeight: "6rem" }}
                   >
-                    <div className="flex-2 flex items-center justify-center w-full">
-                      <img
-                        src={imagenes[i]}
-                        alt={titulos[i]}
-                        className="h-30 w-30 object-contain"
-                      />
+                    <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center">
+                      Has seleccionado: {titulos[seleccionado]}
                     </div>
-                    <span className="text-base font-semibold text-[#0D4763] mt-2">
-                      {titulos[i]}
-                    </span>
-                  </button>
-
-                  {/* 2 columna: debajo de cada grid */}
-                  <div className="block sm:hidden w-full xl:hidden left-1/2  transform translate-x-1/12">
-                    {((i === 0 && seleccionado !== null && seleccionado < 2) ||
-                      (i === 2 && seleccionado !== null && seleccionado > 1)) && (
-                      <div
-                        className={`w-[90vw] max-w-[90vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto`}
-                        style={{ minHeight: "24rem" }}
-                      >
-                        <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center">
-                          Has seleccionado: {titulos[seleccionado]}
-                        </div>
-                      </div>
-                    )}
                   </div>
+                )}
 
-                  {/* 2 columnas: debajo del segundo y cuarto grid */}
-                  <div className="hidden sm:block xl:hidden w-full left-1/2  transform translate-x-1/10">
-                    {((i === 0 && seleccionado !== null && seleccionado < 2) ||
-                      (i === 2 && seleccionado !== null && seleccionado > 1)) && (
-                      <div
-                        className={`w-[90vw] max-w-[90vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto`}
-                        style={{ minHeight: "24rem" }}
-                      >
-                        <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center">
-                          Has seleccionado: {titulos[seleccionado]}
+                {/* Para pantallas mayores o iguales a 400px: NO TOCAR, se mantiene igual */}
+                {!isXs && (
+                  <>
+                    {/* 2 columna: debajo de cada grid */}
+                    <div className="block sm:hidden w-full xl:hidden left-1/2  transform translate-x-1/12">
+                      {((i === 0 && seleccionado !== null && seleccionado < 2) ||
+                        (i === 2 && seleccionado !== null && seleccionado > 1)) && (
+                        <div
+                          className={`w-[90vw] max-w-[90vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto`}
+                          style={{ minHeight: "24rem" }}
+                        >
+                          <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center">
+                            Has seleccionado: {titulos[seleccionado]}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
+                      )}
+                    </div>
 
-                  {/* 4 columnas: solo debajo del último grid */}
-                  <div className="hidden xl:block w-full left-1/2 transform translate-x-1/5">
-                    {i === 0 && seleccionado !== null && (
-                      <div
-                        className={`w-[90vw] max-w-[90vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto`}
-                        style={{ minHeight: "24rem" }}
-                      >
-                        <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center">
-                          Has seleccionado: {titulos[seleccionado]}
+                    {/* 2 columnas: debajo del segundo y cuarto grid */}
+                    <div className="hidden sm:block xl:hidden w-full left-1/2  transform translate-x-1/10">
+                      {((i === 0 && seleccionado !== null && seleccionado < 2) ||
+                        (i === 2 && seleccionado !== null && seleccionado > 1)) && (
+                        <div
+                          className={`w-[90vw] max-w-[90vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto`}
+                          style={{ minHeight: "24rem" }}
+                        >
+                          <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center">
+                            Has seleccionado: {titulos[seleccionado]}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
+                      )}
+                    </div>
+
+                    {/* 4 columnas: solo debajo del último grid */}
+                    <div className="hidden xl:block w-full left-1/2 transform translate-x-1/5">
+                      {i === 0 && seleccionado !== null && (
+                        <div
+                          className={`w-[90vw] max-w-[90vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto`}
+                          style={{ minHeight: "24rem" }}
+                        >
+                          <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center">
+                            Has seleccionado: {titulos[seleccionado]}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
+              </div>
+            ))}
           </div>
 
           {/* Grid centrado al 80% del ancho */}
