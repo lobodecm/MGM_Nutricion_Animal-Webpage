@@ -1,6 +1,6 @@
 'use client';
 import { useState, useRef, useEffect } from "react";
-import Carrucel from "./components/Carrucel.js";
+import Carrucelhome from "./components/Carrucelhome.js";
 
 const colores = [
   "bg-blue-300",
@@ -55,7 +55,7 @@ export default function Home() {
       <h1 className="grid text-2xl sm:text-3xl lg:mt-40 font-bold tracking-tight text-center mt-32 text-[#0D4763]">
         CALIDAD EN PRODUCTO
       </h1>
-      <Carrucel />
+      <Carrucelhome />
       <div className="grid grid-rows-[auto_auto_auto] items-center justify-items-center min-h-screen pb-20 gap-10 font-[family-name:var(--font-geist-sans)]">
         <main className="flex flex-col gap-[32px] row-start-2 items-center w-full">
           {/* Título principal */}
@@ -167,11 +167,6 @@ export default function Home() {
             ></iframe>
           </div>
         </main>
-        <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-          <p className="text-sm text-gray-500">
-            © 2025 MGM Nutrición Aminal. Todos los derechos reservados.
-          </p>
-        </footer>
       </div>
     </>
   );

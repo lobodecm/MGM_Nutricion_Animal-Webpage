@@ -1,26 +1,31 @@
-import Image from "next/image";
+'use client';
+import { useState, useRef, useEffect } from "react";
+import Carrucelquienessomos from "../components/Carrucelquienessomos.js";
 
-export default function quienesSomos() {
+export default function QuienesSomos() {
+    const [seleccionado, setSeleccionado] = useState(null);
+    const [topMsg, setTopMsg] = useState(null);
+    const btnRefs = useRef([]);
+    
+    const handleSeleccionar = (i) => {
+        setSeleccionado(seleccionado === i ? null : i);
+        if (btnRefs.current[i]) {
+        const rect = btnRefs.current[i].getBoundingClientRect();
+        setTopMsg(rect.bottom + 20); // 20px debajo del botón
+        }
+    };
+    
     return (
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-        <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-            <p className="text-2xl font-bold">
-            Quiénes Somos
-            </p>
-            <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-            <li className="mb-2 tracking-[-.01em]">
-                Somos un equipo apasionado por la tecnología y el desarrollo web.
-            </li>
-            <li className="tracking-[-.01em]">
-                Nuestra misión es crear soluciones innovadoras y accesibles para todos.
-            </li>
-            </ol>
-        </main>
-        <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-            <p className="text-sm text-gray-500">
-            © 2023 Tu Sitio Web. Todos los derechos reservados.
-            </p>
-        </footer>
+        <>
+        <h1 className="grid text-2xl sm:text-3xl lg:mt-40 font-bold tracking-tight text-center mt-32 text-[#0D4763]">
+            QUIENES SOMOS
+        </h1>
+        <Carrucelquienessomos />
+        <div className="grid grid-rows-[auto_auto_auto] items-center justify-items-center min-h-screen pb-20 gap-10 font-[family-name:var(--font-geist-sans)]">
+            <main className="flex flex-col gap-[32px] row-start-2 items-center w-full">
+            {/* Aquí puedes agregar más contenido específico de "Quienes Somos" */}
+            </main>
         </div>
+        </>
     );
-}
+    }

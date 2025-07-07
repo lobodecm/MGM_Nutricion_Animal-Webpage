@@ -37,7 +37,7 @@ function useIsBigScreen() {
   return isBig;
 }
 
-export default function Carrucel() {
+export default function Carrucelhome() {
   const isSmall = useIsSmallScreen();
   const isMedioum = useIsMedioumScreen();
   const isBig = useIsBigScreen();
@@ -47,39 +47,39 @@ export default function Carrucel() {
       <br />
       <Carousel
         autoplay
-        autoplaySpeed={10000}
+        autoplaySpeed={3000}
         pauseOnHover={false}
         dots={false}
         arrows={true}
         className={
           isSmall
-            ? "w-[98%] h-[200px] mx-auto rounded-2xl"
+            ? "w-[90%] h-[50vw] mx-auto rounded-2xl"
           : isMedioum
-            ? "w-[98%] h-[300px] mx-auto rounded-2xl"
+            ? "w-[90%] h-[50vw] mx-auto rounded-2xl"
           : isBig
-            ? "w-[98%] h-[400px] mx-auto rounded-2xl"
-            : "w-[98%] h-[500px] mx-auto rounded-2xl"
+            ? "w-[90%] h-[30vw] mx-auto rounded-2xl"
+            : "w-[90%] h-[25vw] mx-auto rounded-2xl"
         }
       >
         <div>
           <img
             src={isSmall ? "/images/carrucel/logo.png" : isMedioum ? "/images/carrucel/logo.png" : isBig ? "/images/carrucel/logo.png" : "/images/carrucel/logo.png"}
             alt="Carousel Image 1 responsive"
-            className={isSmall ? "relative object-fill w-full h-[200px] bg-[#364d79] mx-auto rounded-2xl" : isMedioum ? "relative object-fill w-full h-[300px] bg-[#364d79] mx-auto rounded-2xl" : isBig ? "relative object-fill w-full h-[400px] bg-[#364d79] mx-auto rounded-2xl" : "relative object-fill w-full h-[500px] bg-[#364d79] mx-auto rounded-2xl"}
+            className={isSmall ? "relative object-fill w-full h-[50vw] bg-[#364d79] mx-auto rounded-2xl" : isMedioum ? "relative object-fill w-full h-[50vw] bg-[#364d79] mx-auto rounded-2xl" : isBig ? "relative object-fill w-full h-[30vw] bg-[#364d79] mx-auto rounded-2xl" : "relative object-fill w-full h-[25vw] bg-[#364d79] mx-auto rounded-2xl"}
           />
         </div>
         <div>
           <img
             src={isSmall ? "/images/carrucel/CEquipo_854_480.jpg" : isMedioum ? "/images/carrucel/MEquipo_1280_720.jpg" : "/images/carrucel/GEquipo_1920_1080.jpg"}
             alt="Carousel Image 1 responsive"
-            className={isSmall ? "relative object-fill w-full h-[200px] bg-[#364d79] mx-auto rounded-2xl" : isMedioum ? "relative object-fill w-full h-[300px] bg-[#364d79] mx-auto rounded-2xl" : isBig ? "relative object-fill w-full h-[400px] bg-[#364d79] mx-auto rounded-2xl" : "relative object-fill w-full h-[500px] bg-[#364d79] mx-auto rounded-2xl"}
+            className={isSmall ? "relative object-fill w-full h-[50vw] bg-[#364d79] mx-auto rounded-2xl" : isMedioum ? "relative object-fill w-full h-[50vw] bg-[#364d79] mx-auto rounded-2xl" : isBig ? "relative object-fill w-full h-[30vw] bg-[#364d79] mx-auto rounded-2xl" : "relative object-fill w-full h-[25vw] bg-[#364d79] mx-auto rounded-2xl"}
           />
         </div>
         <div>
-          <h3 className={isSmall ? "relative object-fill w-full h-[200px] bg-[#364d79] mx-auto text-white text-center leading-[200px] rounded-2xl" : isMedioum ? "relative object-fill w-full h-[300px] bg-[#008f39] mx-auto text-white text-center leading-[300px] rounded-2xl" : isBig ? "relative object-fill w-full h-[400px] bg-[#572364] mx-auto text-white text-center leading-[400px] rounded-2xl" : "relative object-fill w-full h-[500px] bg-[#645823] mx-auto text-white text-center leading-[500px] rounded-2xl"}>3</h3>
+          <h3 className={isSmall ? "relative object-fill w-full h-[50vw] bg-[#364d79] mx-auto text-white text-center leading-[50vw] rounded-2xl" : isMedioum ? "relative object-fill w-full h-[50vw] bg-[#008f39] mx-auto text-white text-center leading-[50vw] rounded-2xl" : isBig ? "relative object-fill w-full h-[30vw] bg-[#572364] mx-auto text-white text-center leading-[30vw] rounded-2xl" : "relative object-fill w-full h-[25vw] bg-[#645823] mx-auto text-white text-center leading-[25vw] rounded-2xl"}>3</h3>
         </div>
         <div>
-          <h3 className={isSmall ? "relative object-fill w-full h-[200px] bg-[#364d79] mx-auto text-white text-center leading-[200px] rounded-2xl" : isMedioum ? "relative object-fill w-full h-[300px] bg-[#008f39] mx-auto text-white text-center leading-[300px] rounded-2xl" : isBig ? "relative object-fill w-full h-[400px] bg-[#572364] mx-auto text-white text-center leading-[400px] rounded-2xl" : "relative object-fill w-full h-[500px] bg-[#645823] mx-auto text-white text-center leading-[500px] rounded-2xl"}>4</h3>
+          <h3 className={isSmall ? "relative object-fill w-full h-[50vw] bg-[#364d79] mx-auto text-white text-center leading-[50vw] rounded-2xl" : isMedioum ? "relative object-fill w-full h-[50vw] bg-[#008f39] mx-auto text-white text-center leading-[50vw] rounded-2xl" : isBig ? "relative object-fill w-full h-[30vw] bg-[#572364] mx-auto text-white text-center leading-[30vw] rounded-2xl" : "relative object-fill w-full h-[25vw] bg-[#645823] mx-auto text-white text-center leading-[25vw] rounded-2xl"}>4</h3>
         </div>
       </Carousel>
     </div>
