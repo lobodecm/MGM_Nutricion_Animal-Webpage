@@ -70,7 +70,7 @@ export default function Home() {
                 <button
                   ref={el => btnRefs.current[i] = el}
                   onClick={() => handleSeleccionar(i)}
-                  className="w-[150px] h-[200px] sm:w-[250px] sm:h-[200px] md:w-[300px] md:h-[200px] lg:w-[300px] lg:h-[200px] xl:w-[300px] xl:h-[200px] rounded-xl shadow-md flex flex-col items-center justify-between text-xl font-bold transition-transform hover:scale-105 bg-white border-2 border-gray-200 p-4 hover:border-[#0D4763] active:border-[#0D4763] focus:outline-none focus:ring-2 focus:ring-[#0D4763] focus:ring-opacity-50"
+                  className="w-[200px] h-[200px] sm:w-[250px] sm:h-[200px] md:w-[300px] md:h-[200px] lg:w-[300px] lg:h-[200px] xl:w-[300px] xl:h-[200px] rounded-xl shadow-md flex flex-col items-center justify-between text-xl font-bold transition-transform hover:scale-105 bg-white border-2 border-gray-200 p-4 hover:border-[#0D4763] active:border-[#0D4763] focus:outline-none focus:ring-2 focus:ring-[#0D4763] focus:ring-opacity-50 cursor-pointer"
                 >
                   <div className="flex-2 flex items-center justify-center w-full">
                     <img
@@ -149,7 +149,7 @@ export default function Home() {
           </div>
 
           {/* Grid centrado al 80% del ancho */}
-          <div style={{ width: "100%", maxWidth: 600, margin: "0 auto", aspectRatio: "16/9", position: "relative" }}>
+          <div style={{ width: "100%", maxWidth: "80vw", margin: "0 auto", aspectRatio: "16/9", position: "relative" }}>
             {!videoLoaded && (
               <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
                 <span className="text-[#0D4763] font-bold">Cargando video...</span>
@@ -169,7 +169,7 @@ export default function Home() {
         </main>
         <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
           <p className="text-sm text-gray-500">
-            © 2023 Tu Sitio Web. Todos los derechos reservados.
+            © 2025 MGM Nutrición Aminal. Todos los derechos reservados.
           </p>
         </footer>
       </div>

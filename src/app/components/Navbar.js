@@ -31,11 +31,13 @@ export default function Navbar() {
     <nav className=" fixed top-0 left-0 w-full z-50 bg-[#F4F6F8] text-black px-6 py-4 shadow-md">
       <div className="max-w-15xl mx-auto flex justify-between items-center w-full px-4 py-2">
         {/* Imagen (Logotipo o ícono) */}
-        <img
-          src="/images/Menu/logo.png"
-          alt="Logo"
-          className="h-15 pr-3 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
-        />
+        <Link href="/">
+          <img
+            src="/images/Menu/logo.png"
+            alt="Logo"
+            className="h-15 pr-3 transition-transform transform hover:scale-110 lg:h-20 cursor-pointer"
+          />
+        </Link>
 
         {/* whatsapp para pantallas pequeñas */}
         <div className="flex items-center lg:hidden">
