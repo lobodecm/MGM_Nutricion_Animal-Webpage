@@ -149,7 +149,7 @@ export default function Home() {
           </div>
 
           {/* Grid centrado al 80% del ancho */}
-          <div style={{ width: "100%", maxWidth: "80vw", margin: "0 auto", aspectRatio: "16/9", position: "relative" }}>
+          <div className="w-full max-w-[80vw] mx-auto aspect-[16/9] relative border-2 border-gray-200 rounded-lg overflow-hidden">
             {!videoLoaded && (
               <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
                 <span className="text-[#0D4763] font-bold">Cargando video...</span>
