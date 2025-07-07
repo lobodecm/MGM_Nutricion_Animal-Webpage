@@ -74,9 +74,10 @@ export default function Home() {
                     </span>
                   </button>
 
-                  {/* 1 columna: debajo de cada grid */}
-                  <div className="block sm:hidden w-full">
-                    {seleccionado === i && (
+                  {/* 2 columna: debajo de cada grid */}
+                  <div className="block sm:hidden w-full xl:hidden left-1/2  transform translate-x-1/12">
+                    {((i === 0 && seleccionado !== null && seleccionado < 2) ||
+                      (i === 2 && seleccionado !== null && seleccionado > 1)) && (
                       <div
                         className={`w-[90vw] max-w-[90vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto`}
                         style={{ minHeight: "24rem" }}
