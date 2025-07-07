@@ -96,7 +96,7 @@ export default function Home() {
                   </div>
                 )}
 
-                {/* Para pantallas mayores o iguales a 400px: NO TOCAR, se mantiene igual */}
+                {/* Para pantallas mayores o iguales a 400px */}
                 {!isXs && (
                   <>
                     {/* 2 columna: debajo de cada grid */}
