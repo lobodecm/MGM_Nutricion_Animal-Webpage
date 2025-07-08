@@ -53,12 +53,12 @@ export default function Carrucelquienessomos () {
         arrows={true}
         className={
           isSmall
-            ? "w-[80%] h-[25vw] mx-auto rounded-2xl"
+            ? "w-[90vw] h-[25vw] mx-auto rounded-2xl "
           : isMedioum
-            ? "w-[80%] h-[25vw] mx-auto rounded-2xl"
+            ? "w-[90vw] h-[25vw] mx-auto rounded-2xl"
           : isBig
-            ? "w-[80%] h-[25vw] mx-auto rounded-2xl"
-            : "w-[80%] h-[25vw] mx-auto rounded-2xl"
+            ? "w-[90vw] h-[25vw] mx-auto rounded-2xl"
+            : "w-[90vw] h-[25vw] mx-auto rounded-2xl"
         }
       >
         <div>
