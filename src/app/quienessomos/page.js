@@ -3,17 +3,45 @@ import { useState, useRef, useEffect } from "react";
 import Carrucelquienessomos from "../components/Carrucelquienessomos.js";
 
 export default function QuienesSomos() {
-    const [seleccionado, setSeleccionado] = useState(null);
+    const [activo, setActivo] = useState(null);
     const [topMsg, setTopMsg] = useState(null);
     const btnRefs = useRef([]);
 
     const handleSeleccionar = (i) => {
-        setSeleccionado(seleccionado === i ? null : i);
+        setActivo(seleccionado === i ? null : i);
         if (btnRefs.current[i]) {
             const rect = btnRefs.current[i].getBoundingClientRect();
             setTopMsg(rect.bottom + 20); // 20px debajo del botón
         }
     };
+
+    const valores = [
+        {
+            img: "/images/quienessomos/valores/honestidad.png",
+            titulo: "HONESTIDAD",
+            texto: "Decir la verdad; actuar apegado a la manera propia de sentir y pensar, mostrándose ante los demás y ante uno mismo con honradez y rectitud.",
+        },
+        {
+            img: "/images/quienessomos/valores/integridad.png",
+            titulo: "INTEGRIDAD",
+            texto: "Conjunto de valores que nos inducen a hacer lo correcto, es decir, a actuar con congruencia y firmeza.",
+        },
+        {
+            img: "/images/quienessomos/valores/lealtad.png",
+            titulo: "LEALTAD",
+            texto: "Actitud de profundo compromiso que promueve la rendición de cuentas en nuestro quehacer cotidiano.",
+        },
+        {
+            img: "/images/quienessomos/valores/respeto.png",
+            titulo: "RESPETO",
+            texto: "Entendimiento de las diferencias con un sentimiento de reciprocidad y un apego a las normas que nos rigen.",
+        },
+        {
+            img: "/images/quienessomos/valores/Pasion.png",
+            titulo: "PASIÓN",
+            texto: "Emoción intensa que se traduce en entusiasmo y deseo de hacer las cosas mejor día a día.",
+        },
+    ];
 
     return (
         <>
@@ -84,92 +112,44 @@ export default function QuienesSomos() {
                 </section>
 
                 {/* 5. Grid: 5 valores circulares con imagen y texto oculto */}
-                <section className="w-full max-w-[90vw] mx-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-8">
-                    {/* Valor 1 */}
-                    <div className="relative flex flex-col items-center">
+                <section className="w-full max-w-[90vw] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
+                    {valores.map((valor, i) => (
                         <div
-                            className="group w-[18vw] h-[18vw] max-w-[250px] max-h-[250px] bg-blue-400 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-transform hover:scale-105 relative"
-                            tabIndex={0}
+                            key={valor.titulo}
+                            className="flex flex-col items-center justify-center h-[220px] w-full"
                         >
-                            <img
-                                src="/images/quienessomos/valores/honestidad.png"
-                                alt="Honestidad"
-                                className="absolute inset-0 w-full h-full object-cover rounded-full z-0"
-                            />
-                            <div className="absolute inset-0 bg-blue-900 bg-opacity-90 rounded-full flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 z-20">
-                                <h2 className="text-white text-lg font-bold mb-2">HONESTIDAD</h2>
-                                <span className="text-white text-center px-4">Decir la verdad; actuar apegado a la manera propia de sentir y pensar, mostrándose ante los demás y ante uno mismo con honradez y rectitud.</span>
+                            <div
+                                className="group relative flex items-center justify-center w-full h-full"
+                                tabIndex={0}
+                            >
+                                {/* Círculo centrado */}
+                                <div
+                                    className="
+            w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[120px] md:h-[120px] 
+            bg-blue-400 rounded-full flex items-center justify-center shadow-lg cursor-pointer
+            transition-transform duration-300
+          "
+                                >
+                                    <img
+                                        src={valor.img}
+                                        alt={valor.titulo}
+                                        className="w-full h-full object-cover rounded-full"
+                                    />
+                                </div>
+                                {/* Texto revelado */}
+                                <div
+                                    className="
+            absolute inset-0 bg-blue-900 bg-opacity-90 rounded-full flex flex-col items-center justify-center text-center
+            opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 z-10
+            px-4
+          "
+                                >
+                                    <h2 className="text-white text-lg font-bold mb-2">{valor.titulo}</h2>
+                                    <span className="text-white text-xs sm:text-sm md:text-base">{valor.texto}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    {/* Valor 2 */}
-                    <div className="relative flex flex-col items-center">
-                        <div
-                            className="group w-[18vw] h-[18vw] max-w-[250px] max-h-[250px] bg-blue-400 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-transform hover:scale-105 relative"
-                            tabIndex={0}
-                        >
-                            <img
-                                src="/images/quienessomos/valores/integridad.png"
-                                alt="Integridad"
-                                className="absolute inset-0 w-full h-full object-cover rounded-full z-0"
-                            />
-                            <div className="absolute inset-0 bg-blue-900 bg-opacity-90 rounded-full flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 z-20">
-                                <h2 className="text-white text-lg font-bold mb-2">INTEGRIDAD</h2>
-                                <span className="text-white text-center px-4">conjunto de valores que nos inducen a hacer lo correcto, es decir, a actuar con congruencia y firmeza.</span>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Valor 3 */}
-                    <div className="relative flex flex-col items-center">
-                        <div
-                            className="group w-[18vw] h-[18vw] max-w-[250px] max-h-[250px] bg-blue-400 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-transform hover:scale-105 relative"
-                            tabIndex={0}
-                        >
-                            <img
-                                src="/images/quienessomos/valores/lealtad.png"
-                                alt="Lealtad"
-                                className="absolute inset-0 w-full h-full object-cover rounded-full z-0"
-                            />
-                            <div className="absolute inset-0 bg-blue-900 bg-opacity-90 rounded-full flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 z-20">
-                                <h2 className="text-white text-lg font-bold mb-2">LEALTAD</h2>
-                                <span className="text-white text-center px-4">Actitud de profundo compromiso que promueve la rendición de cuentas en nuestro quehacer cotidiano.</span>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Valor 4 */}
-                    <div className="relative flex flex-col items-center">
-                        <div
-                            className="group w-[18vw] h-[18vw] max-w-[250px] max-h-[250px] bg-blue-400 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-transform hover:scale-105 relative"
-                            tabIndex={0}
-                        >
-                            <img
-                                src="/images/quienessomos/valores/respeto.png"
-                                alt="Respeto"
-                                className="absolute inset-0 w-full h-full object-cover rounded-full z-0"
-                            />
-                            <div className="absolute inset-0 bg-blue-900 bg-opacity-90 rounded-full flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 z-20">
-                                <h2 className="text-white text-lg font-bold mb-2">RESPETO</h2>
-                                <span className="text-white text-center px-4">Entendimiento de las diferencias con un sentimiento de reciprocidad y un apego a las normas que nos rigen.</span>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Valor 5 */}
-                    <div className="relative flex flex-col items-center">
-                        <div
-                            className="group w-[18vw] h-[18vw] max-w-[250px] max-h-[250px] bg-blue-400 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-transform hover:scale-105 relative"
-                            tabIndex={0}
-                        >
-                            <img
-                                src="/images/quienessomos/valores/Pasion.png"
-                                alt="Pasión"
-                                className="absolute inset-0 w-full h-full object-cover rounded-full z-0"
-                            />
-                            <div className="absolute inset-0 bg-blue-900 bg-opacity-90 rounded-full flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 z-20">
-                                <h2 className="text-white text-lg font-bold mb-2">PASIÓN</h2>
-                                <span className="text-white text-center px-4">Emoción intensa que se traduce en entusiasmo y deseo de hacer las cosas mejor día a día.</span>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </section>
             </div>
             <div className="grid grid-rows-[auto_auto_auto] items-center justify-items-center min-h-screen pb-20 gap-10 font-[family-name:var(--font-geist-sans)]">
