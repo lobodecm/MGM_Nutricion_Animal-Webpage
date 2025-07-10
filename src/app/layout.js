@@ -34,10 +34,18 @@ export default function RootLayout({ children }) {
       <body className="antialiased">
         <Navbar className="top-0 z-50 bg-black"/>
         <main className="mt-[72px]">{children}</main>
-        <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+        <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center pb-6">
           <p className="text-sm text-gray-500">
             © 2025 MGM Nutrición Aminal. Todos los derechos reservados.
           </p>
+          <a
+            href="/docs/AVISO_DE_PRIVACIDAD_MGM.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-blue-600 underline hover:text-blue-800 transition-colors"
+          >
+            Aviso de Privacidad (PDF)
+          </a>
         </footer>
       </body>
     </html>

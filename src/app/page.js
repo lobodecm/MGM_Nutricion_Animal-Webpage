@@ -52,9 +52,6 @@ export default function Home() {
 
   return (
     <>
-      <h1 className="grid text-2xl sm:text-3xl lg:mt-40 font-bold tracking-tight text-center mt-32 text-[#0D4763]">
-        CALIDAD EN PRODUCTO
-      </h1>
       <Carrucelhome />
       <div className="grid grid-rows-[auto_auto_auto] items-center justify-items-center min-h-screen pb-20 gap-10 font-[family-name:var(--font-geist-sans)]">
         <main className="flex flex-col gap-[32px] row-start-2 items-center w-full">
@@ -87,10 +84,9 @@ export default function Home() {
                 {/* SOLO para pantallas menores a 400px: mensaje debajo y centrado */}
                 {isXs && seleccionado === i && (
                   <div
-                    className={`w-[90vw] max-w-[90vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto`}
-                    style={{ minHeight: "6rem" }}
+                    className={`w-[60vw] max-w-[60vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto aspect-[16/9]`}
                   >
-                    <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center">
+                    <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center flex items-center justify-center h-full">
                       Has seleccionado: {titulos[seleccionado]}
                     </div>
                   </div>
@@ -104,10 +100,9 @@ export default function Home() {
                       {((i === 0 && seleccionado !== null && seleccionado < 2) ||
                         (i === 2 && seleccionado !== null && seleccionado > 1)) && (
                         <div
-                          className={`w-[90vw] max-w-[90vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto`}
-                          style={{ minHeight: "24rem" }}
+                          className={`w-[60vw] max-w-[60vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto aspect-[16/9]`}
                         >
-                          <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center">
+                          <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center flex items-center justify-center h-full">
                             Has seleccionado: {titulos[seleccionado]}
                           </div>
                         </div>
@@ -119,10 +114,9 @@ export default function Home() {
                       {((i === 0 && seleccionado !== null && seleccionado < 2) ||
                         (i === 2 && seleccionado !== null && seleccionado > 1)) && (
                         <div
-                          className={`w-[90vw] max-w-[90vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto`}
-                          style={{ minHeight: "24rem" }}
+                          className={`w-[60vw] max-w-[60vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto aspect-[16/9]`}
                         >
-                          <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center">
+                          <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center flex items-center justify-center h-full">
                             Has seleccionado: {titulos[seleccionado]}
                           </div>
                         </div>
@@ -130,23 +124,23 @@ export default function Home() {
                     </div>
 
                     {/* 4 columnas: solo debajo del último grid */}
-                    <div className="hidden xl:block w-full left-1/2 transform translate-x-1/5">
-                      {i === 0 && seleccionado !== null && (
-                        <div
-                          className={`w-[90vw] max-w-[90vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto`}
-                          style={{ minHeight: "24rem" }}
-                        >
-                          <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center">
-                            Has seleccionado: {titulos[seleccionado]}
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                    
                   </>
                 )}
               </div>
             ))}
           </div>
+
+          {/* Mensaje desplegable centrado en pantalla para xl */}
+          {!isXs && seleccionado !== null && (
+            <div className="hidden xl:flex w-full justify-center mt-5 mb-2">
+              <div className={`w-[60vw] max-w-[60vw] rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} aspect-[16/9]`}>
+                <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center flex items-center justify-center h-full">
+                  Has seleccionado: {titulos[seleccionado]}
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Grid centrado al 80% del ancho */}
           <div className="w-full max-w-[80vw] mx-auto aspect-[16/9] relative border-2 border-gray-200 rounded-lg overflow-hidden">
