@@ -107,7 +107,7 @@ export default function QuienesSomos() {
                 {/* 4. Grid: Título grande */}
                 <section className="w-full max-w-[90vw] mx-auto mt-8 mb-4 rounded-2xl bg-[#0D4763] text-white flex items-center justify-center min-h-[200px] shadow-lg">
                     <h3 className="text-2xl md:text-3xl font-bold p-8 text-center w-full">
-                        Nuestros Valores
+                        NUESTROS VALORES
                     </h3>
                 </section>
 
@@ -139,13 +139,26 @@ export default function QuienesSomos() {
                                 {/* Texto revelado */}
                                 <div
                                     className="
-            absolute inset-0 bg-blue-900 bg-opacity-90 rounded-full flex flex-col items-center justify-center text-center
-            opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 z-10
-            px-4
-          "
+    absolute inset-0 bg-blue-900 bg-opacity-90 rounded-full flex flex-col items-center justify-center text-center
+    opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 z-10
+    px-4
+  "
                                 >
-                                    <h2 className="text-white text-lg font-bold mb-2">{valor.titulo}</h2>
-                                    <span className="text-white text-xs sm:text-sm md:text-base">{valor.texto}</span>
+                                    <h2 className="text-white text-[1.25rem] sm:text-[1.5rem] md:text-[1.25rem] font-bold mb-2 leading-tight">
+                                        {valor.titulo}
+                                    </h2>
+                                    <span
+                                        className="
+      text-white
+      text-[0.95rem] sm:text-[1.05rem] md:text-[1.1rem]
+      leading-snug
+      max-w-[18rem] sm:max-w-[20rem] md:max-w-[16rem] lg:max-w-[14rem]
+      break-words
+      text-center
+      "
+                                    >
+                                        {valor.texto}
+                                    </span>
                                 </div>
                             </div>
                         </div>
