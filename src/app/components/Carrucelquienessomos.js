@@ -63,7 +63,7 @@ export default function Carrucelquienessomos () {
       >
         <div>
           <img
-            src={isSmall ? "/images/carrucel/Equipo.jpg" : isMedioum ? "/images/carrucel/Equipo.jpg" : isBig ? "/images/carrucel/Equipo.jpg" : "/images/carrucel/Equipo.jpg"}
+            src={isSmall ? "/images/quienessomos/Equipo.jpg" : isMedioum ? "/images/quienessomos/Equipo.jpg" : isBig ? "/images/quienessomos/Equipo.jpg" : "/images/quienessomos/Equipo.jpg"}
             alt="Carousel Image 1 responsive"
             className={isSmall ? "relative object-fill w-full h-[25vw] bg-[#364d79] mx-auto rounded-2xl" : isMedioum ? "relative object-fill w-full h-[25vw] bg-[#364d79] mx-auto rounded-2xl" : isBig ? "relative object-fill w-full h-[25vw] bg-[#364d79] mx-auto rounded-2xl" : "relative object-fill w-full h-[25vw] bg-[#364d79] mx-auto rounded-2xl"}
           />

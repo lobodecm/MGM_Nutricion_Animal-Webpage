@@ -4,11 +4,11 @@ import Carrucelhome from "./components/Carrucelhome.js";
 
 // URLs de imágenes para los desplegables (relación 16/9)
 const imagenesDesplegables = [
-  "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", // Premezclas
-  "https://images.unsplash.com/photo-1556911220-ef412aedc110?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", // Alimento Terminado
-  "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", // Laboratorio
-  "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"  // Alimento Purecan
-];
+    "/images/carrucel/1MNUTRICION.png",
+    "/images/carrucel/2MMABO.png",
+    "/images/carrucel/3MMGM.png",
+    "/images/carrucel/4MPURECAN.png"  
+  ];
 
 const titulos = [
   "Premezclas",
@@ -141,7 +141,7 @@ export default function Home() {
                 {/* Desplegable para Fila 1 */}
                 {(seleccionado === 0 || seleccionado === 1) && (
                   <div className="w-full flex justify-center mb-10">
-                    <div className="w-[70vw] max-w-[70vw] rounded-xl overflow-hidden aspect-[16/9] shadow-xl">
+                    <div className="w-[90vw] max-w-[90vw] rounded-xl overflow-hidden aspect-[16/9] shadow-xl">
                       <img 
                         src={imagenesDesplegables[seleccionado]}
                         alt={titulos[seleccionado]}
@@ -178,7 +178,7 @@ export default function Home() {
                 {/* Desplegable para Fila 2 */}
                 {(seleccionado === 2 || seleccionado === 3) && (
                   <div className="w-full flex justify-center mt-6">
-                    <div className="w-[70vw] max-w-[70vw] rounded-xl overflow-hidden aspect-[16/9] shadow-xl">
+                    <div className="w-[90vw] max-w-[90vw] rounded-xl overflow-hidden aspect-[16/9] shadow-xl">
                       <img 
                         src={imagenesDesplegables[seleccionado]}
                         alt={titulos[seleccionado]}
