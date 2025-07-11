@@ -2,11 +2,12 @@
 import { useState, useRef, useEffect } from "react";
 import Carrucelhome from "./components/Carrucelhome.js";
 
-const colores = [
-  "bg-blue-300",
-  "bg-green-300",
-  "bg-yellow-300",
-  "bg-pink-300"
+// URLs de imágenes para los desplegables (relación 16/9)
+const imagenesDesplegables = [
+  "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", // Premezclas
+  "https://images.unsplash.com/photo-1556911220-ef412aedc110?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", // Alimento Terminado
+  "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80", // Laboratorio
+  "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"  // Alimento Purecan
 ];
 
 const titulos = [
@@ -23,31 +24,39 @@ const imagenes = [
   "/images/Productos/purecan.png"
 ];
 
-// Hook para detectar si la pantalla es menor a 400px
-function useIsXsScreen() {
-  const [isXs, setIsXs] = useState(false);
+function useScreenSize() {
+  const [screenSize, setScreenSize] = useState({
+    isXs: false,
+    isSmOrMd: false,
+    isLgOrXl: false
+  });
+
   useEffect(() => {
-    const check = () => setIsXs(window.innerWidth < 400);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      setScreenSize({
+        isXs: width < 400,
+        isSmOrMd: width >= 400 && width < 1200,
+        isLgOrXl: width >= 1200
+      });
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
-  return isXs;
+
+  return screenSize;
 }
 
 export default function Home() {
   const [seleccionado, setSeleccionado] = useState(null);
-  const [topMsg, setTopMsg] = useState(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const btnRefs = useRef([]);
-  const isXs = useIsXsScreen();
+  const { isXs, isSmOrMd, isLgOrXl } = useScreenSize();
 
   const handleSeleccionar = (i) => {
     setSeleccionado(seleccionado === i ? null : i);
-    if (btnRefs.current[i]) {
-      const rect = btnRefs.current[i].getBoundingClientRect();
-      setTopMsg(rect.bottom + 20); // 20px debajo del botón
-    }
   };
 
   return (
@@ -55,99 +64,149 @@ export default function Home() {
       <Carrucelhome />
       <div className="grid grid-rows-[auto_auto_auto] items-center justify-items-center min-h-screen pb-20 gap-10 font-[family-name:var(--font-geist-sans)]">
         <main className="flex flex-col gap-[32px] row-start-2 items-center w-full">
-          {/* Título principal */}
           <h1 className="text-2xl sm:text-3xl font-bold text-[#0D4763] text-center">
             CONOCE NUESTROS PRODUCTOS
           </h1>
+          
 
-          {/* Grid de 4 contenedores responsivos con título abajo */}
-          <div className={`w-full grid ${isXs ? "grid-cols-1" : "grid-cols-2 xl:grid-cols-4"} gap-6 justify-items-center m-auto`}>
-            {[0, 1, 2, 3].map((i) => (
-              <div key={i} className="flex flex-col items-center w-full">
-                <button
-                  ref={el => btnRefs.current[i] = el}
-                  onClick={() => handleSeleccionar(i)}
-                  className="w-[200px] h-[200px] sm:w-[250px] sm:h-[200px] md:w-[300px] md:h-[200px] lg:w-[300px] lg:h-[200px] xl:w-[300px] xl:h-[200px] rounded-xl shadow-md flex flex-col items-center justify-between text-xl font-bold transition-transform hover:scale-105 bg-white border-2 border-gray-200 p-4 hover:border-[#0D4763] active:border-[#0D4763] focus:outline-none focus:ring-2 focus:ring-[#0D4763] focus:ring-opacity-50 cursor-pointer"
-                >
-                  <div className="flex-2 flex items-center justify-center w-full">
-                    <img
-                      src={imagenes[i]}
-                      alt={titulos[i]}
-                      className="h-30 w-30 object-contain"
-                    />
-                  </div>
-                  <span className="text-base font-semibold text-[#0D4763] mt-2">
-                    {titulos[i]}
-                  </span>
-                </button>
-
-                {/* SOLO para pantallas menores a 400px: mensaje debajo y centrado */}
-                {isXs && seleccionado === i && (
-                  <div
-                    className={`w-[60vw] max-w-[60vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto aspect-[16/9]`}
+          {/* SECCIÓN DE PRODUCTOS */}
+          <div className="w-full">
+            {/* Para pantallas extra pequeñas y grandes */}
+            <div className={`w-full grid ${
+              isXs ? "grid-cols-1" : 
+              (isSmOrMd ? "hidden" : "grid-cols-4")
+            } gap-6 justify-items-center m-auto`}>
+              
+              {[0, 1, 2, 3].map((i) => (
+                <div key={i} className="flex flex-col items-center w-full">
+                  <button
+                    ref={el => btnRefs.current[i] = el}
+                    onClick={() => handleSeleccionar(i)}
+                    className="w-[200px] h-[200px] sm:w-[250px] sm:h-[200px] md:w-[300px] md:h-[200px] lg:w-[300px] lg:h-[200px] xl:w-[300px] xl:h-[200px] rounded-xl shadow-md flex flex-col items-center justify-between text-xl font-bold transition-transform hover:scale-105 bg-white border-2 border-gray-200 p-4 hover:border-[#0D4763] active:border-[#0D4763] focus:outline-none focus:ring-2 focus:ring-[#0D4763] focus:ring-opacity-50 cursor-pointer"
                   >
-                    <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center flex items-center justify-center h-full">
-                      Has seleccionado: {titulos[seleccionado]}
+                    <div className="flex-2 flex items-center justify-center w-full">
+                      <img
+                        src={imagenes[i]}
+                        alt={titulos[i]}
+                        className="h-30 w-30 object-contain"
+                      />
+                    </div>
+                    <span className="text-base font-semibold text-[#0D4763] mt-2">
+                      {titulos[i]}
+                    </span>
+                  </button>
+                  
+                  {isXs && seleccionado === i && (
+                    <div className="w-full flex justify-center mt-4">
+                      <div className="w-[90vw] max-w-[90vw] rounded-xl overflow-hidden aspect-[16/9] shadow-xl">
+                        <img 
+                          src={imagenesDesplegables[i]}
+                          alt={titulos[i]}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Versión para pantallas medianas (2 filas de 2 columnas) */}
+            {isSmOrMd && (
+              <div className="w-full">
+                {/* Fila 1: Productos 0 y 1 */}
+                <div className="w-full grid grid-cols-2 gap-6 justify-items-center m-auto mb-6">
+                  {[0, 1].map((i) => (
+                    <div key={i} className="flex flex-col items-center w-full">
+                      <button
+                        ref={el => btnRefs.current[i] = el}
+                        onClick={() => handleSeleccionar(i)}
+                        className="w-[200px] h-[200px] sm:w-[250px] sm:h-[200px] md:w-[300px] md:h-[200px] rounded-xl shadow-md flex flex-col items-center justify-between text-xl font-bold transition-transform hover:scale-105 bg-white border-2 border-gray-200 p-4 hover:border-[#0D4763] active:border-[#0D4763] focus:outline-none focus:ring-2 focus:ring-[#0D4763] focus:ring-opacity-50 cursor-pointer"
+                      >
+                        <div className="flex-2 flex items-center justify-center w-full">
+                          <img
+                            src={imagenes[i]}
+                            alt={titulos[i]}
+                            className="h-30 w-30 object-contain"
+                          />
+                        </div>
+                        <span className="text-base font-semibold text-[#0D4763] mt-2">
+                          {titulos[i]}
+                        </span>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Desplegable para Fila 1 */}
+                {(seleccionado === 0 || seleccionado === 1) && (
+                  <div className="w-full flex justify-center mb-10">
+                    <div className="w-[70vw] max-w-[70vw] rounded-xl overflow-hidden aspect-[16/9] shadow-xl">
+                      <img 
+                        src={imagenesDesplegables[seleccionado]}
+                        alt={titulos[seleccionado]}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
                 )}
 
-                {/* Para pantallas mayores o iguales a 400px */}
-                {!isXs && (
-                  <>
-                    {/* 2 columna: debajo de cada grid */}
-                    <div className="block sm:hidden w-full xl:hidden left-1/2  transform translate-x-1/12">
-                      {((i === 0 && seleccionado !== null && seleccionado < 2) ||
-                        (i === 2 && seleccionado !== null && seleccionado > 1)) && (
-                        <div
-                          className={`w-[60vw] max-w-[60vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto aspect-[16/9]`}
-                        >
-                          <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center flex items-center justify-center h-full">
-                            Has seleccionado: {titulos[seleccionado]}
-                          </div>
+                {/* Fila 2: Productos 2 y 3 */}
+                <div className="w-full grid grid-cols-2 gap-6 justify-items-center m-auto">
+                  {[2, 3].map((i) => (
+                    <div key={i} className="flex flex-col items-center w-full">
+                      <button
+                        ref={el => btnRefs.current[i] = el}
+                        onClick={() => handleSeleccionar(i)}
+                        className="w-[200px] h-[200px] sm:w-[250px] sm:h-[200px] md:w-[300px] md:h-[200px] rounded-xl shadow-md flex flex-col items-center justify-between text-xl font-bold transition-transform hover:scale-105 bg-white border-2 border-gray-200 p-4 hover:border-[#0D4763] active:border-[#0D4763] focus:outline-none focus:ring-2 focus:ring-[#0D4763] focus:ring-opacity-50 cursor-pointer"
+                      >
+                        <div className="flex-2 flex items-center justify-center w-full">
+                          <img
+                            src={imagenes[i]}
+                            alt={titulos[i]}
+                            className="h-30 w-30 object-contain"
+                          />
                         </div>
-                      )}
+                        <span className="text-base font-semibold text-[#0D4763] mt-2">
+                          {titulos[i]}
+                        </span>
+                      </button>
                     </div>
-
-                    {/* 2 columnas: debajo del segundo y cuarto grid */}
-                    <div className="hidden sm:block xl:hidden w-full left-1/2  transform translate-x-1/10">
-                      {((i === 0 && seleccionado !== null && seleccionado < 2) ||
-                        (i === 2 && seleccionado !== null && seleccionado > 1)) && (
-                        <div
-                          className={`w-[60vw] max-w-[60vw] mt-5 mb-2 rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} mx-auto aspect-[16/9]`}
-                        >
-                          <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center flex items-center justify-center h-full">
-                            Has seleccionado: {titulos[seleccionado]}
-                          </div>
-                        </div>
-                      )}
+                  ))}
+                </div>
+                
+                {/* Desplegable para Fila 2 */}
+                {(seleccionado === 2 || seleccionado === 3) && (
+                  <div className="w-full flex justify-center mt-6">
+                    <div className="w-[70vw] max-w-[70vw] rounded-xl overflow-hidden aspect-[16/9] shadow-xl">
+                      <img 
+                        src={imagenesDesplegables[seleccionado]}
+                        alt={titulos[seleccionado]}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-
-                    {/* 4 columnas: solo debajo del último grid */}
-                    
-                  </>
+                  </div>
                 )}
               </div>
-            ))}
-          </div>
+            )}
 
-          {/* Mensaje desplegable centrado en pantalla para xl */}
-          {!isXs && seleccionado !== null && (
-            <div className="hidden xl:flex w-full justify-center mt-5 mb-2">
-              <div className={`w-[60vw] max-w-[60vw] rounded-xl flex items-center justify-center text-lg font-semibold text-white transition-all duration-300 ${colores[seleccionado]} aspect-[16/9]`}>
-                <div className="rounded-xl px-8 py-4 bg-opacity-90 w-full text-center flex items-center justify-center h-full">
-                  Has seleccionado: {titulos[seleccionado]}
+            {/* Para pantallas grandes */}
+            {isLgOrXl && seleccionado !== null && (
+              <div className="w-full flex justify-center mt-6">
+                <div className="w-[70vw] max-w-[70vw] rounded-xl overflow-hidden aspect-[16/9] shadow-xl">
+                  <img 
+                    src={imagenesDesplegables[seleccionado]}
+                    alt={titulos[seleccionado]}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
-            </div>
-          )}
-
-          {/* Grid centrado al 80% del ancho */}
+            )}
+          </div>
           <div className="w-full max-w-[80vw] mx-auto aspect-[16/9] relative border-2 border-gray-200 rounded-lg overflow-hidden">
             {!videoLoaded && (
               <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
                 <span className="text-[#0D4763] font-bold">Cargando video...</span>
-                {/* Aquí puedes poner un spinner si lo deseas */}
               </div>
             )}
             <iframe
