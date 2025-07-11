@@ -4,17 +4,9 @@ import Carrucelquienessomos from "../components/Carrucelquienessomos.js";
 
 export default function QuienesSomos() {
     const [activo, setActivo] = useState(null);
-    const [topMsg, setTopMsg] = useState(null);
-    const btnRefs = useRef([]);
-
-    const handleSeleccionar = (i) => {
-        setActivo(seleccionado === i ? null : i);
-        if (btnRefs.current[i]) {
-            const rect = btnRefs.current[i].getBoundingClientRect();
-            setTopMsg(rect.bottom + 20); // 20px debajo del botón
-        }
-    };
-
+    const [isMobile, setIsMobile] = useState(false);
+    const valoresRef = useRef(null);
+    
     const valores = [
         {
             img: "/images/quienessomos/valores/honestidad.png",
@@ -37,19 +29,38 @@ export default function QuienesSomos() {
             texto: "Entendimiento de las diferencias con un sentimiento de reciprocidad y un apego a las normas que nos rigen.",
         },
         {
-            img: "/images/quienessomos/valores/Pasion.png",
+            img: "/images/quienessomos/valores/pasion.png",
             titulo: "PASIÓN",
             texto: "Emoción intensa que se traduce en entusiasmo y deseo de hacer las cosas mejor día a día.",
         },
     ];
 
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 1024);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    const handleCircleClick = (index) => {
+        if (activo === index) {
+            setActivo(null);
+        } else {
+            setActivo(index);
+        }
+    };
+
     return (
         <>
-            <h1 className="grid text-2xl sm:text-3xl lg:mt-40 font-bold tracking-tight text-center mt-32 text-[#0D4763]">
+            <h1 className="text-2xl sm:text-3xl lg:mt-40 font-bold tracking-tight text-center mt-32 text-[#0D4763]">
                 QUIENES SOMOS
             </h1>
             <Carrucelquienessomos />
-            <div className="flex flex-col gap-10 w-full items-center font-[family-name:var(--font-geist-sans)]">
+            <div className="flex flex-col gap-10 w-full items-center font-[family-name:var(--font-geist-sans)] pb-20">
                 {/* 1. Grid: Sección azul fuerte, mismo ancho que el carrusel */}
                 <section className="w-full max-w-[90vw] mx-auto mt-8 mb-4 rounded-2xl bg-[#0D4763] text-white flex flex-col min-h-[200px] shadow-lg">
                     <h1 className="text-2xl md:text-3xl font-bold p-8 text-center w-full">
@@ -111,65 +122,116 @@ export default function QuienesSomos() {
                     </h3>
                 </section>
 
-                {/* 5. Grid: 5 valores circulares con imagen y texto oculto */}
-                <section className="w-full max-w-[90vw] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
-                    {valores.map((valor, i) => (
-                        <div
-                            key={valor.titulo}
-                            className="flex flex-col items-center justify-center h-[220px] w-full"
-                        >
-                            <div
-                                className="group relative flex items-center justify-center w-full h-full"
-                                tabIndex={0}
-                            >
-                                {/* Círculo centrado */}
-                                <div
-                                    className="
-            w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[120px] md:h-[120px] 
-            bg-blue-400 rounded-full flex items-center justify-center shadow-lg cursor-pointer
-            transition-transform duration-300
-          "
+                {/* 5. Grid: 5 valores circulares con animaciones */}
+                <section className="w-full max-w-[90vw] mx-auto" ref={valoresRef}>
+                    {/* Versión para pantallas grandes (lg y superiores) */}
+                    <div className="hidden lg:flex justify-center items-center">
+                        <div className="grid grid-cols-5 gap-8 w-full">
+                            {valores.map((valor, i) => (
+                                <div 
+                                    key={i} 
+                                    className="flex flex-col items-center justify-center"
+                                    onMouseEnter={() => setActivo(i)}
+                                    onMouseLeave={() => setActivo(null)}
                                 >
-                                    <img
-                                        src={valor.img}
-                                        alt={valor.titulo}
-                                        className="w-full h-full object-cover rounded-full"
-                                    />
-                                </div>
-                                {/* Texto revelado */}
-                                <div
-                                    className="
-    absolute inset-0 bg-blue-900 bg-opacity-90 rounded-full flex flex-col items-center justify-center text-center
-    opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 z-10
-    px-4
-  "
-                                >
-                                    <h2 className="text-white text-[1.25rem] sm:text-[1.5rem] md:text-[1.25rem] font-bold mb-2 leading-tight">
-                                        {valor.titulo}
-                                    </h2>
-                                    <span
-                                        className="
-      text-white
-      text-[0.95rem] sm:text-[1.05rem] md:text-[1.1rem]
-      leading-snug
-      max-w-[18rem] sm:max-w-[20rem] md:max-w-[16rem] lg:max-w-[14rem]
-      break-words
-      text-center
-      "
+                                    <div 
+                                        className={`relative w-48 h-48 rounded-full overflow-hidden shadow-2xl cursor-pointer transform transition-all duration-500 ${
+                                            activo === i ? 'rotate-y-180' : ''
+                                        }`}
+                                        onClick={() => handleCircleClick(i)}
                                     >
-                                        {valor.texto}
-                                    </span>
+                                        {/* Frente del círculo - Imagen */}
+                                        <div className={`absolute inset-0 transition-opacity duration-500 ${
+                                            activo === i ? 'opacity-0' : 'opacity-100'
+                                        }`}>
+                                            <img 
+                                                src={valor.img} 
+                                                alt={valor.titulo} 
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                        
+                                        {/* Parte trasera del círculo - Texto */}
+                                        <div className={`absolute inset-0 bg-[#0D4763] rounded-full flex flex-col items-center justify-center p-4 text-center transition-opacity duration-500 ${
+                                            activo === i ? 'opacity-100 rotate-y-180' : 'opacity-0'
+                                        }`}>
+                                            <h3 className="text-xl font-bold text-white mb-2">{valor.titulo}</h3>
+                                            <p className="text-white text-xs text-center">{valor.texto}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            ))}
                         </div>
-                    ))}
+                    </div>
+                    
+                    {/* Versión para pantallas móviles y tablets */}
+                    <div className="lg:hidden">
+                        <div className="space-y-8 max-w-md mx-auto">
+                            {valores.map((valor, i) => (
+                                <div 
+                                    key={i} 
+                                    className={`relative h-32 transition-all duration-500 ${
+                                        activo === i ? 'pl-32' : ''
+                                    }`}
+                                >
+                                    {/* Círculo que se desplaza */}
+                                    <div 
+                                        className={`absolute top-0 w-32 h-32 rounded-full overflow-hidden shadow-lg z-10 cursor-pointer transition-all duration-500 ${
+                                            activo === i ? '-left-5' : 'left-1/2 transform -translate-x-1/2'
+                                        }`}
+                                        onClick={() => handleCircleClick(i)}
+                                    >
+                                        <img 
+                                            src={valor.img} 
+                                            alt={valor.titulo} 
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                    
+                                    {/* Contenedor de información que se despliega */}
+                                    <div 
+                                        className={`absolute top-0 left-5 w-full h-32 bg-[#0D4763] rounded-r-3xl shadow-lg transition-all duration-500 ${
+                                            activo === i ? 'opacity-100' : 'opacity-0'
+                                        }`}
+                                        style={{
+                                            clipPath: activo === i 
+                                                ? 'inset(0 0 0 32px)' 
+                                                : 'inset(0 100% 0 32px)'
+                                        }}
+                                    >
+                                        <div className="absolute inset-0 pl-32 pr-4 flex flex-col justify-center">
+                                            <h3 className="text-xl font-bold text-white">{valor.titulo}</h3>
+                                            <p className="text-white text-sm mt-1">{valor.texto}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </section>
             </div>
-            <div className="grid grid-rows-[auto_auto_auto] items-center justify-items-center min-h-screen pb-20 gap-10 font-[family-name:var(--font-geist-sans)]">
-                <main className="flex flex-col gap-[32px] row-start-2 items-center w-full bg-black px-4 sm:px-8 lg:px-16 xl:px-32">
-                    {/* Aquí puedes agregar más contenido específico de "Quienes Somos" */}
-                </main>
-            </div>
+
+            <style jsx global>{`
+                @keyframes rotate {
+                    0% { transform: rotateY(0deg); }
+                    100% { transform: rotateY(180deg); }
+                }
+                
+                .rotate-y-180 {
+                    animation: rotate 0.7s forwards;
+                }
+                
+                /* Animación para móviles */
+                @keyframes slideIn {
+                    from { transform: translateX(0); }
+                    to { transform: translateX(-50%); }
+                }
+                
+                @keyframes expand {
+                    from { clip-path: inset(0 100% 0 32px); }
+                    to { clip-path: inset(0 0 0 32px); }
+                }
+            `}</style>
         </>
     );
 }
