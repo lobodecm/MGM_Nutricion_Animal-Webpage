@@ -77,7 +77,7 @@ export default function contacto() {
         <div className="grid grid-cols-3 gap-2 md:gap-4">
           <button 
             onClick={() => scrollToSection('redes-sociales')}
-            className="bg-[#F4F6F8] hover:bg-blue-700 text-white py-2 px-1 md:px-4 rounded-lg text-xs md:text-base transition duration-300"
+            className="bg-[#F4F6F8] hover:bg-[#0D4763] text-[#0D4763] hover:text-white py-2 px-1 md:px-4 rounded-lg text-xs md:text-base transition duration-300"
           >
             COMO ENCONTRARNOS?
           </button>
