@@ -62,14 +62,14 @@ export default function contacto() {
   });
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-2 sm:py-2 md:py-8 xl:py-8 lg:py-8">
       {/* Grid 1: Bienvenida y botones */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
-        <div className="text-center md:text-left bg-[#3E4E5E] text-white p-6 rounded-lg shadow-lg">
-          <h1 className="text-3xl md:text-4xl font-bold">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center my-8">
+        <div className="text-center md:text-left bg-[#0D4763] text-white p-4 rounded-lg shadow-lg">
+          <h1 className="text-xl md:text-2xl font-bold">
             Bienvenido a MGM Nutrición Animal
           </h1>
-          <p className="mt-4 text-lg">
+          <p className="mt-1 text-lg">
             Tu socio confiable en nutrición animal de calidad
           </p>
         </div>
@@ -77,19 +77,19 @@ export default function contacto() {
         <div className="grid grid-cols-3 gap-2 md:gap-4">
           <button 
             onClick={() => scrollToSection('redes-sociales')}
-            className="bg-[#F4F6F8] hover:bg-[#0D4763] text-[#0D4763] hover:text-white py-2 px-1 md:px-4 rounded-lg text-xs md:text-base transition duration-300"
+            className="text-[#0D4763] bg-[#F4F6F8] py-2 px-1 md:px-4 rounded-xl text-xs md:text-base ft-bold transition duration-300 hover:bg-[#0D4763] hover:text-white hover:scale-110 cursor-pointer border-b-2 border-[#0D4763]"
           >
             COMO ENCONTRARNOS?
           </button>
           <button 
             onClick={() => scrollToSection('trabaja-con-nosotros')}
-            className="bg-green-600 hover:bg-green-700 text-white py-2 px-1 md:px-4 rounded-lg text-xs md:text-base transition duration-300"
+            className="text-[#0D4763] bg-[#F4F6F8] py-2 px-1 md:px-4 rounded-xl text-xs md:text-base transition duration-300 hover:bg-[#0D4763] hover:text-white hover:scale-110 cursor-pointer border-b-2 border-[#0D4763]"
           >
             TRABAJA CON NOSOTROS
           </button>
           <button 
             onClick={() => scrollToSection('opiniones')}
-            className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-1 md:px-4 rounded-lg text-xs md:text-base transition duration-300"
+            className="text-[#0D4763] bg-[#F4F6F8] py-2 px-1 md:px-4 rounded-xl text-xs md:text-base transition duration-300 hover:bg-[#0D4763] hover:text-white hover:scale-110 cursor-pointer border-b-2 border-[#0D4763]"
           >
             ENVIANOS TUS OPINIONES
           </button>
@@ -98,27 +98,27 @@ export default function contacto() {
 
       {/* Grid 2: Presencia */}
       <div className="mb-16">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#3E4E5E]">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#0D4763]">
           CON PRESENCIA EN:
         </h2>
         
-      <div className="w-[90vw] aspect-[2.35/1] rounded-xl overflow-hidden shadow-xl">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1851.7382024757796!2d-102.15633210195409!3d21.839152278176726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429f47c7e82d96b%3A0x7241525b367f3de1!2sMGM%20NUTRICION%20ANIMAL%20SA%20DE%20CV!5e0!3m2!1ses!2smx!4v1752523016391!5m2!1ses!2smx" 
-          className="w-full h-full"
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
-      </div>
+        <div className="w-[90vw] aspect-[2.35/1] rounded-xl overflow-hidden shadow-xl">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1851.7382024757796!2d-102.15633210195409!3d21.839152278176726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429f47c7e82d96b%3A0x7241525b367f3de1!2sMGM%20NUTRICION%20ANIMAL%20SA%20DE%20CV!5e0!3m2!1ses!2smx!4v1752523016391!5m2!1ses!2smx" 
+            className="w-full h-full"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
         
-        <p className="text-lg md:text-xl text-black text-center mt-10">
+        <p id="redes-sociales" className="text-lg md:text-xl text-black text-center mt-10">
           Si te interesa distribuir calidad para la nutrición animal, ponte en contacto con nosotros y crezcamos juntos.
         </p>
       </div>
 
       {/* Grid 3: Redes sociales */}
-      <div id="redes-sociales" className="mb-16">
+      <div className="mb-16">
         <div className="md:flex md:items-center md:space-x-8">
           <h2 className="text-2xl md:text-3xl font-bold text-[#3E4E5E] mb-4 md:mb-0">
             COMO ENCONTRARNOS:
@@ -148,11 +148,14 @@ export default function contacto() {
 
       {/* Grid 4: Ubicación */}
       <div className="mb-16">
-        <div className="w-[95vw] mx-auto aspect-[2.35/1] bg-gray-200 rounded-xl overflow-hidden mb-6">
-          {/* Mapa responsivo - Reemplazar con componente real de mapa */}
-          <div className="w-full h-full flex items-center justify-center bg-green-100">
-            <span className="text-xl font-semibold">Mapa de Ubicación</span>
-          </div>
+        <div className="w-[90vw] aspect-[2.35/1] rounded-xl overflow-hidden shadow-xl">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1851.7382024757796!2d-102.15633210195409!3d21.839152278176726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429f47c7e82d96b%3A0x7241525b367f3de1!2sMGM%20NUTRICION%20ANIMAL%20SA%20DE%20CV!5e0!3m2!1ses!2smx!4v1752523016391!5m2!1ses!2smx" 
+            className="w-full h-full"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
         
         <div className="text-center">
@@ -162,14 +165,14 @@ export default function contacto() {
           <p className="text-lg md:text-xl mb-2">
             Teléfonos: (449)9711914 -- (449)9743973
           </p>
-          <p className="text-md md:text-lg">
+          <p id="trabaja-con-nosotros" className="text-md md:text-lg">
             Dirección: Carretera a San Luis Potosi KM 14.5 Colonia El Retoño C.P. 20337
           </p>
         </div>
       </div>
 
       {/* Grid 5: Trabaja con nosotros */}
-      <div id="trabaja-con-nosotros" className="mb-16">
+      <div className="mb-16">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
           TRABAJA CON NOSOTROS
         </h2>
@@ -177,28 +180,28 @@ export default function contacto() {
         <div className="md:flex md:space-x-8 items-center">
           <div className="md:w-7/12 mb-8 md:mb-0">
             <h3 className="text-xl font-bold mb-4">
-              ¿Te gustaría unirte a nuestro equipo de trabajo?
+              ¿Te gustaría unirte a nuestro equipo en MGM Nutrición Animal?
             </h3>
             <p className="mb-4">
-              Estamos interesados en talento humano que comparta nuestra visión, con disponibilidad y deseos de desarrollo profesional dentro de la empresa.
+              En MGM Nutrición Animal, estamos en búsqueda activa de <strong className="text-[#0D4763]">profesionales apasionados y talentosos</strong> que deseen contribuir a nuestra misión de ofrecer productos de nutrición animal de la más alta calidad. Valoramos a individuos con una <strong className="text-[#0D4763]">visión innovadora</strong>, que demuestren <strong className="text-[#0D4763]">disponibilidad</strong> para el aprendizaje continuo y un firme <strong className="text-[#0D4763]">deseo de desarrollo profesional</strong> en un entorno colaborativo y dinámico.
             </p>
             <p>
-              Envíanos tu CV, revisaremos tu perfil y nos pondremos en contacto contigo.
+              Si buscas una <strong className="text-[#0D4763]">oportunidad para crecer</strong> y aplicar tus habilidades en una empresa líder en el sector, te invitamos cordialmente a <strong className="text-[#0D4763]">presentar tu currículum vitae (CV)</strong>. Nuestro equipo de selección revisará detalladamente cada perfil para identificar aquellos que mejor se alineen con nuestros valores y objetivos. Nos comprometemos a ponernos en contacto contigo en caso de que tu experiencia y aspiraciones profesionales coincidan con nuestras vacantes actuales o futuras.
             </p>
           </div>
-          
+
           <div className="md:w-5/12 flex justify-center">
             <div className="animate-pulse hover:animate-spin transition duration-1000 rounded-full overflow-hidden w-48 h-48 md:w-64 md:h-64">
               <div className="bg-gray-200 border-2 border-dashed rounded-full w-full h-full flex items-center justify-center">
-                <span className="text-lg font-semibold">Imagen de trabajo</span>
+                <img src="/images/contacto/circulo.png" alt="Trabajo" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
         </div>
       </div>
-
+      <div id="opiniones" className="p-25 -m-25"></div>
       {/* Grid 6: Opiniones */}
-      <div id="opiniones" className="mb-16">
+      <div className="mb-16">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
           CUENTANOS TU OPINION
         </h2>
