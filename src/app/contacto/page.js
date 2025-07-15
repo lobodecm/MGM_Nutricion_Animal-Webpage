@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import Image from 'next/image';
 
 export default function Contacto() {
   // Estados para manejar el envío del formulario
@@ -61,11 +62,35 @@ export default function Contacto() {
     }
   });
 
+  // Datos de redes sociales con imágenes y enlaces
+  const redesSociales = [
+    { 
+      name: 'Facebook', 
+      url: 'https://www.facebook.com/MGMNutricion/?locale=es_LA', 
+      icon: '/images/Redes/facebook.png' 
+    },
+    { 
+      name: 'LinkedIn', 
+      url: 'https://mx.linkedin.com/company/mgm-nutrici%C3%B3n-animal-sa-de-cv', 
+      icon: '/images/Redes/linkedin.png' 
+    },
+    { 
+      name: 'Instagram', 
+      url: 'https://www.instagram.com/mgm.nutricion.animal/?hl=es', 
+      icon: '/images/Redes/instagram.png' 
+    },
+    { 
+      name: 'WhatsApp', 
+      url: 'https://wa.me/+524493981492', 
+      icon: '/images/Redes/whatsapp.png' 
+    }
+  ];
+
   return (
-    <div className="max-w-screen-2xl mx-auto px-4 py-2 sm:py-2 md:py-8 xl:py-8 lg:py-8 w-full">
+    <div className="max-w-screen-2xl mx-auto px-4 py-2 sm:py-2 md:py-8 xl:py-8 lg:py-8 w-full overflow-x-hidden">
       {/* Grid 1: Bienvenida y botones */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center my-8">
-        <div className="text-center md:text-left bg-[#0D4763] text-white p-4 rounded-lg shadow-lg">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8 items-center my-8">
+        <div className="text-center bg-[#0D4763] text-white p-4 rounded-lg shadow-lg">
           <h1 className="text-xl md:text-2xl font-bold">
             Bienvenido a MGM Nutrición Animal
           </h1>
@@ -102,7 +127,7 @@ export default function Contacto() {
           CON PRESENCIA EN:
         </h2>
         
-        <div className="w-full max-w-4xl mx-auto aspect-[2.35/1] rounded-xl overflow-hidden shadow-xl">
+        <div className="w-full max-w-8xl mx-auto aspect-[32/9] rounded-xl overflow-hidden shadow-xl">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1851.7382024757796!2d-102.15633210195409!3d21.839152278176726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429f47c7e82d96b%3A0x7241525b367f3de1!2sMGM%20NUTRICION%20ANIMAL%20SA%20DE%20CV!5e0!3m2!1ses!2smx!4v1752523016391!5m2!1ses!2smx" 
             className="w-full h-full"
@@ -112,34 +137,39 @@ export default function Contacto() {
           ></iframe>
         </div>
         
-        <p id="redes-sociales" className="text-lg md:text-xl text-black text-center mt-10 max-w-3xl mx-auto">
+        <p id="redes-sociales" className="text-lg md:text-xl text-black text-center mt-10 max-w-7xl mx-auto">
           Si te interesa distribuir calidad para la nutrición animal, ponte en contacto con nosotros y crezcamos juntos.
         </p>
       </div>
 
       {/* Grid 3: Redes sociales */}
       <div className="mb-16 max-w-4xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-center md:space-x-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#3E4E5E] mb-4 md:mb-0">
+        <div className="flex flex-col ">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#3E4E5E] mb-4 md:mb-4 text-center">
             COMO ENCONTRARNOS:
           </h2>
           
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 justify-center">
-            {[
-              { name: 'Facebook', url: 'https://facebook.com', color: 'bg-blue-500' },
-              { name: 'Instagram', url: 'https://instagram.com', color: 'bg-pink-500' },
-              { name: 'LinkedIn', url: 'https://linkedin.com', color: 'bg-blue-700' },
-              { name: 'WhatsApp', url: 'https://wa.me/numero', color: 'bg-green-500' },
-            ].map((social, index) => (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 justify-center">
+            {redesSociales.map((social, index) => (
               <a 
                 key={index}
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${social.color} rounded-full w-16 h-16 flex items-center justify-center text-white hover:opacity-90 transition duration-300 mx-auto`}
+                className="flex flex-col items-center hover:scale-105 transition-transform duration-300"
               >
-                <span className="sr-only">{social.name}</span>
-                <div className="bg-gray-200 border-2 border-dashed rounded-xl w-10 h-10" />
+                <div className="bg-white p-3 rounded-full shadow-lg">
+                  <div className="relative w-16 h-16">
+                    <Image 
+                      src={social.icon} 
+                      alt={social.name}
+                      layout="fill"
+                      objectFit="contain"
+                      className="rounded-full"
+                    />
+                  </div>
+                </div>
+                <span className="mt-2 text-sm font-medium text-[#0D4763]">{social.name}</span>
               </a>
             ))}
           </div>
