@@ -208,7 +208,7 @@ export default function Contacto() {
         </h2>
         
         <div className="flex flex-col md:flex-row md:space-x-8 items-center">
-          <div className="md:w-7/12 mb-8 md:mb-0">
+          <div className="md:w-7/12 mb-8 md:mb-0 text-justify">
             <h3 className="text-xl font-bold mb-4">
               ¿Te gustaría unirte a nuestro equipo en MGM Nutrición Animal?
             </h3>
