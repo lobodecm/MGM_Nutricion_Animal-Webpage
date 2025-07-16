@@ -2,13 +2,29 @@
 import { useState, useRef, useEffect } from "react";
 import Carrucelhome from "./components/Carrucelhome.js";
 
-// URLs de imágenes para los desplegables (relación 16/9)
+// URLs de imágenes para los desplegables con diferentes tamaños
 const imagenesDesplegables = [
-    "/images/carrucel/1MNUTRICION.png",
-    "/images/carrucel/2MMABO.png",
-    "/images/carrucel/3MMGM.png",
-    "/images/carrucel/4MPURECAN.png"  
-  ];
+  {
+    small: "/images/carrucel/1MNUTRICION-small.jpg",  // ~50KB para móviles
+    medium: "/images/carrucel/1MNUTRICION-medium.jpg", // ~150KB para tablets
+    large: "/images/carrucel/1MNUTRICION-large.jpg"    // ~300KB para escritorio
+  },
+  {
+    small: "/images/Productos/PURECANC.png",
+    medium: "/images/Productos/PURECANM.png",
+    large: "/images/Productos/PURECANG.png"
+  },
+  {
+    small: "/images/Productos/LABC.png",
+    medium: "/images/Productos/LABM.png",
+    large: "/images/Productos/LABG.png"
+  },
+  {
+    small: "/images/Productos/PURECANC.png",
+    medium: "/images/Productos/PURECANM.png",
+    large: "/images/Productos/PURECANG.png"
+  }
+];
 
 const titulos = [
   "Premezclas",
@@ -52,11 +68,20 @@ function useScreenSize() {
 export default function Home() {
   const [seleccionado, setSeleccionado] = useState(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [imgLoading, setImgLoading] = useState(true);
   const btnRefs = useRef([]);
   const { isXs, isSmOrMd, isLgOrXl } = useScreenSize();
 
   const handleSeleccionar = (i) => {
     setSeleccionado(seleccionado === i ? null : i);
+    setImgLoading(true);
+  };
+
+  // Función para obtener la imagen adecuada según el tamaño de pantalla
+  const getImagenDesplegable = (index) => {
+    if (isXs) return imagenesDesplegables[index].small;
+    if (isSmOrMd) return imagenesDesplegables[index].medium;
+    return imagenesDesplegables[index].large;
   };
 
   return (
@@ -99,10 +124,16 @@ export default function Home() {
                   {isXs && seleccionado === i && (
                     <div className="w-full flex justify-center mt-4">
                       <div className="w-[90vw] max-w-[90vw] rounded-xl overflow-hidden aspect-[16/9] shadow-xl">
+                        {imgLoading && (
+                          <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full aspect-[16/9] flex items-center justify-center">
+                            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#0D4763]"></div>
+                          </div>
+                        )}
                         <img 
-                          src={imagenesDesplegables[i]}
+                          src={getImagenDesplegable(i)}
                           alt={titulos[i]}
-                          className="w-full h-full object-cover"
+                          className={`w-full h-full object-cover ${imgLoading ? 'hidden' : 'block'}`}
+                          onLoad={() => setImgLoading(false)}
                         />
                       </div>
                     </div>
@@ -142,10 +173,16 @@ export default function Home() {
                 {(seleccionado === 0 || seleccionado === 1) && (
                   <div className="w-full flex justify-center mb-10">
                     <div className="w-[90vw] max-w-[90vw] rounded-xl overflow-hidden aspect-[16/9] shadow-xl">
+                      {imgLoading && (
+                        <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full aspect-[16/9] flex items-center justify-center">
+                          <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#0D4763]"></div>
+                        </div>
+                      )}
                       <img 
-                        src={imagenesDesplegables[seleccionado]}
+                        src={getImagenDesplegable(seleccionado)}
                         alt={titulos[seleccionado]}
-                        className="w-full h-full object-cover"
+                        className={`w-full h-full object-cover ${imgLoading ? 'hidden' : 'block'}`}
+                        onLoad={() => setImgLoading(false)}
                       />
                     </div>
                   </div>
@@ -179,10 +216,16 @@ export default function Home() {
                 {(seleccionado === 2 || seleccionado === 3) && (
                   <div className="w-full flex justify-center mt-6">
                     <div className="w-[90vw] max-w-[90vw] rounded-xl overflow-hidden aspect-[16/9] shadow-xl">
+                      {imgLoading && (
+                        <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full aspect-[16/9] flex items-center justify-center">
+                          <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#0D4763]"></div>
+                        </div>
+                      )}
                       <img 
-                        src={imagenesDesplegables[seleccionado]}
+                        src={getImagenDesplegable(seleccionado)}
                         alt={titulos[seleccionado]}
-                        className="w-full h-full object-cover"
+                        className={`w-full h-full object-cover ${imgLoading ? 'hidden' : 'block'}`}
+                        onLoad={() => setImgLoading(false)}
                       />
                     </div>
                   </div>
@@ -194,10 +237,16 @@ export default function Home() {
             {isLgOrXl && seleccionado !== null && (
               <div className="w-full flex justify-center mt-6">
                 <div className="w-[70vw] max-w-[70vw] rounded-xl overflow-hidden aspect-[16/9] shadow-xl">
+                  {imgLoading && (
+                    <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full aspect-[16/9] flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#0D4763]"></div>
+                    </div>
+                  )}
                   <img 
-                    src={imagenesDesplegables[seleccionado]}
+                    src={getImagenDesplegable(seleccionado)}
                     alt={titulos[seleccionado]}
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full object-cover ${imgLoading ? 'hidden' : 'block'}`}
+                    onLoad={() => setImgLoading(false)}
                   />
                 </div>
               </div>
@@ -206,7 +255,10 @@ export default function Home() {
           <div className="w-full max-w-[80vw] mx-auto aspect-[16/9] relative border-2 border-gray-200 rounded-lg overflow-hidden">
             {!videoLoaded && (
               <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
-                <span className="text-[#0D4763] font-bold">Cargando video...</span>
+                <div className="flex flex-col items-center">
+                  <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#0D4763] mb-2"></div>
+                  <span className="text-[#0D4763] font-bold">Cargando video...</span>
+                </div>
               </div>
             )}
             <iframe
