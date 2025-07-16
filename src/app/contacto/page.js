@@ -99,7 +99,7 @@ export default function Contacto() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-4">
+        <div className="grid grid-cols-3 sm:grid-cols-3 gap-2 md:gap-4">
           <button 
             onClick={() => scrollToSection('redes-sociales')}
             className="text-[#0D4763] bg-[#F4F6F8] py-2 px-1 md:px-4 rounded-xl text-xs md:text-base ft-bold transition duration-300 hover:bg-[#0D4763] hover:text-white hover:scale-105 cursor-pointer border-b-2 border-[#0D4763]"
@@ -122,7 +122,7 @@ export default function Contacto() {
       </div>
 
       {/* Grid 2: Presencia */}
-      <div className="mb-16">
+      <div className="mb-10">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#0D4763]">
           CON PRESENCIA EN:
         </h2>
@@ -145,7 +145,7 @@ export default function Contacto() {
       {/* Grid 3: Redes sociales */}
       <div className="mb-16 max-w-4xl mx-auto">
         <div className="flex flex-col ">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#3E4E5E] mb-4 md:mb-4 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0D4763] mb-8 md:mb-8 text-center">
             COMO ENCONTRARNOS:
           </h2>
           
@@ -177,7 +177,7 @@ export default function Contacto() {
       </div>
 
       {/* Grid 4: Ubicación */}
-      <div className="w-full max-w-8xl mx-auto aspect-[32/9] rounded-xl overflow-hidden shadow-xl">
+      <div className="mb-16 max-w-8xl mx-auto">
         <div className="w-full max-w-8xl mx-auto aspect-[32/9] rounded-xl overflow-hidden shadow-xl">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1851.7382024757796!2d-102.15633210195409!3d21.839152278176726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429f47c7e82d96b%3A0x7241525b367f3de1!2sMGM%20NUTRICION%20ANIMAL%20SA%20DE%20CV!5e0!3m2!1ses!2smx!4v1752523016391!5m2!1ses!2smx" 
@@ -188,22 +188,22 @@ export default function Contacto() {
           ></iframe>
         </div>
         
-        <div className="text-center mt-6">
-          <h3 className="text-xl md:text-2xl font-bold mb-2">
+        <div className="text-center mt-12">
+          <h3 className="text-xl md:text-2xl font-bold mb-2 text-[#0D4763]">
             MGM NUTRICIÓN ANIMAL
           </h3>
           <p className="text-lg md:text-xl mb-2">
-            Teléfonos: (449)9711914 -- (449)9743973
+            <strong className="text-[#0D4763] ">Teléfonos:</strong> (449)9711914 -- (449)9743973
           </p>
           <p id="trabaja-con-nosotros" className="text-md md:text-lg">
-            Dirección: Carretera a San Luis Potosi KM 14.5 Colonia El Retoño C.P. 20337
+            <strong className="text-[#0D4763] ">Dirección:</strong> Carretera a San Luis Potosi KM 14.5 Colonia El Retoño C.P. 20337
           </p>
         </div>
       </div>
 
       {/* Grid 5: Trabaja con nosotros */}
       <div className="mb-16 max-w-5xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#0D4763]">
           TRABAJA CON NOSOTROS
         </h2>
         
@@ -221,9 +221,14 @@ export default function Contacto() {
           </div>
 
           <div className="md:w-5/12 flex justify-center">
-            <div className="animate-pulse hover:animate-spin transition duration-1000 rounded-full overflow-hidden w-48 h-48 md:w-64 md:h-64">
-              <div className="bg-gray-200 border-2 border-dashed rounded-full w-full h-full flex items-center justify-center">
-                <div className="bg-gray-300 border-2 border-dashed rounded-xl w-16 h-16" />
+            <div className="animate-pulse hover:scale-125 transition-transform duration-300 hover:animate-spin transition duration-1000 rounded-full overflow-hidden w-48 h-48 md:w-64 md:h-64">
+              <div className="border-2 border-dashed rounded-full w-full h-full flex items-center justify-center bg-blue-200">
+                
+                  <img 
+                    src="/images/contacto/lupa.png" 
+                    alt="CV Icon"
+                    className="w-full h-full object-cover "
+                  />
               </div>
             </div>
           </div>
@@ -232,7 +237,7 @@ export default function Contacto() {
       
       {/* Grid 6: Opiniones */}
       <div id="opiniones" className="mb-16 max-w-5xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#0D4763]">
           CUENTANOS TU OPINION
         </h2>
         
@@ -343,8 +348,8 @@ export default function Contacto() {
                     }}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   />
-                  <div className="px-4 py-2 bg-gray-100 border rounded-lg text-center cursor-pointer hover:bg-gray-200 transition duration-300">
-                    <span>Subir archivo</span>
+                  <div className="px-4 py-2 bg-[#0D4763] border rounded-lg text-center cursor-pointer hover:bg-[#F4F6F8] transition duration-300">
+                    <strong className=" text-white">Subir archivo</strong>
                   </div>
                 </div>
                 {formik.values.cv && (
@@ -370,7 +375,7 @@ export default function Contacto() {
               {isSubmitting ? (
                 <div className="flex items-center">
                   <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <circle className="opacity-25 bg-[#0D4763]" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
                   Enviando...
