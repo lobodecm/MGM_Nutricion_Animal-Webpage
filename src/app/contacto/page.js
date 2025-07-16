@@ -177,8 +177,8 @@ export default function Contacto() {
       </div>
 
       {/* Grid 4: Ubicación */}
-      <div className="mb-16 max-w-4xl mx-auto">
-        <div className="w-full aspect-[2.35/1] rounded-xl overflow-hidden shadow-xl">
+      <div className="w-full max-w-8xl mx-auto aspect-[32/9] rounded-xl overflow-hidden shadow-xl">
+        <div className="w-full max-w-8xl mx-auto aspect-[32/9] rounded-xl overflow-hidden shadow-xl">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1851.7382024757796!2d-102.15633210195409!3d21.839152278176726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429f47c7e82d96b%3A0x7241525b367f3de1!2sMGM%20NUTRICION%20ANIMAL%20SA%20DE%20CV!5e0!3m2!1ses!2smx!4v1752523016391!5m2!1ses!2smx" 
             className="w-full h-full"
